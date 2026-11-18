@@ -363,6 +363,7 @@ a{color:#FFFFFF}a:hover{color:#CCCCCC}
 <sc-if value="{{b.isOl}}" hint-placeholder-val="{{false}}"><ol style="margin: 0; padding-left: 24px; display: flex; flex-direction: column; gap: 6px"><sc-for list="{{b.list}}" as="it" hint-placeholder-count="3"><li>{{it.t}}</li></sc-for></ol></sc-if>
 <sc-if value="{{b.isChips}}" hint-placeholder-val="{{false}}"><div style="display: flex; flex-wrap: wrap; gap: 8px"><sc-for list="{{b.list}}" as="it" hint-placeholder-count="4"><span style="padding: 6px 12px; border-radius: 999px; background: #FFFFFF; border: 1px solid #CFCDC7; font-size: 14px; font-weight: 600; color: #1A1A1A">{{it.t}}</span></sc-for></div></sc-if>
 <sc-if value="{{b.isRanks}}" hint-placeholder-val="{{false}}"><ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px"><sc-for list="{{b.list}}" as="it" hint-placeholder-count="5"><li style="display: flex; align-items: center; gap: 12px; padding: 7px 12px; background: #FFFFFF; border: 1px solid #DEDCD6; border-radius: 6px"><span style="font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: 16px; color: #777777; width: 22px">{{it.n}}</span><span style="font-weight: 600">{{it.t}}</span></li></sc-for></ol></sc-if>
+<sc-if value="{{b.isLink}}" hint-placeholder-val="{{false}}"><a href="{{b.href}}" target="_blank" rel="noopener" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 999px; background: #111111; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 15px">{{b.text}} <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg></a></sc-if>
 <sc-if value="{{b.isKv}}" hint-placeholder-val="{{false}}"><dl style="margin: 0; display: flex; flex-direction: column"><sc-for list="{{b.list}}" as="it" hint-placeholder-count="4"><div style="display: grid; grid-template-columns: minmax(80px, 30%) 1fr; gap: 16px; padding: 10px 0; border-bottom: 1px solid #DEDCD6"><dt style="font-weight: 700; color: #111111">{{it.k}}</dt><dd style="margin: 0">{{it.v}}</dd></div></sc-for></dl></sc-if>
 </sc-for>
 </div>
@@ -1637,18 +1638,81 @@ class Component extends DCLogic {
         ] }
       ] }
     ];
+    var CREWS = [
+      { title: 'Descripción general', blocks: [
+        { t: 'p', text: 'Las CREWS son grupos de aficionados a las carreras urbanas y a la cultura del motor, cuyo objetivo es dominar las calles con coordinación, talento y estilo. Su misión: convertirse en el equipo más reconocido de la ciudad y coronar al mejor piloto.' },
+        { t: 'ul', items: [
+          'Pueden formar una CREW tanto ciudadanos como miembros de organizaciones ilegales. Al crearla debe tener un mínimo de 3 miembros y un máximo de 10.',
+          'Las competiciones se dividen por clases de vehículos. La clasificación está en el canal oficial de CREWS.',
+          'Los civiles solo pueden asistir a las carreras ilegales y acompañar en el boosting u otras actividades. Si la policía los atrapa, se les imputan los mismos cargos aunque no sean de la crew.',
+          'Cualquier otra interacción de civiles puede suponer una sanción para la crew responsable, salvo en los eventos abiertos a todos.'
+        ] }
+      ] },
+      { title: 'Normas generales', blocks: [
+        { t: 'kv', items: [
+          { k: 'Entorno previo', v: 'Antes de cada carrera, todos los corredores deben enviar un entorno detallado con el modelo y el color del vehículo. El anfitrión indica cuándo enviarlo.' },
+          { k: 'Comando /V', v: 'Obligatorio, sobre todo para quien va en cabeza. Sirve para que la policía conozca la ubicación de los corredores.' },
+          { k: 'Inscripción', v: 'Toda carrera cuesta como mínimo 500 $, salvo acuerdo entre corredores y anfitrión. Premios: 50 % para el 1.º, 30 % para el 2.º y 20 % para el 3.º.' },
+          { k: 'Nombres', v: 'Prohibidos los nombres provocadores, irrespetuosos o fuera de lugar en la tablet. Solo se muestra el apodo de calle y las iniciales de la CREW.' },
+          { k: 'Sin rol agresivo', v: 'No se permite ningún tipo de rol agresivo durante la carrera.' },
+          { k: 'Abandono', v: 'Abandonar una carrera sin un motivo válido es falta grave.' },
+          { k: 'Organizador', v: 'Hay que cumplir todas las instrucciones del creador de la carrera. Las infracciones repetidas se sancionan.' },
+          { k: 'Inactividad', v: 'Si una CREW deja de hacer actividades sin causa justificada, se cierra definitivamente.' },
+          { k: 'Estética', v: 'Los vehículos de la CREW deben tener elementos distintivos (colores o personalización), y sus miembros deben llevar ropa, colores o accesorios que los identifiquen.' },
+          { k: 'Intrusos', v: 'Prohibido que personas externas interfieran en una carrera activa o invadir carreras y eventos de otros equipos o jugadores.' },
+          { k: 'Progresión', v: 'Una carrera solo cuenta para la progresión si participa otra CREW distinta del equipo anfitrión. La frecuencia de participación y la actividad influyen en la evolución de la CREW.' },
+          { k: 'Perseguidos', v: 'Si a un corredor le persigue la policía antes de llegar a la salida, puede unirse igualmente a la carrera.' },
+          { k: 'Respeto', v: 'Respeto absoluto entre corredores. Las actitudes hostiles o tóxicas se sancionan.' },
+          { k: 'Salir de la crew', v: 'Quien se va de una crew debe rolear un PK de todo lo relacionado con ella. Si es expulsado, el líder decide si se le aplica PK, PKT o CK.' }
+        ] }
+      ] },
+      { title: 'Persecuciones', blocks: [
+        { t: 'ul', items: [
+          'Ni la SAPD ni los corredores pueden pinchar ruedas durante las carreras o actividades relacionadas.',
+          'No se permite usar nitro en persecuciones, ni montarlo en coches VIP. El nitro solo se puede usar en el día a día o en carreras.'
+        ] },
+        { t: 'h', text: 'Cuándo se permite la maniobra PIT' },
+        { t: 'ul', items: [
+          'Conducir en sentido contrario durante más de 20 segundos.',
+          'Chocar a propósito contra un vehículo policial.',
+          'Tirarse al agua para evitar la captura.',
+          'Usar nitro durante la persecución (está prohibido).'
+        ] }
+      ] },
+      { title: 'Sanciones y radio', blocks: [
+        { t: 'h', text: 'Régimen de sanciones' },
+        { t: 'ul', items: [
+          'Una CREW puede recibir hasta 3 strikes. Al llegar al tercero, se disuelve de inmediato.',
+          'Superar el número máximo de miembros supone un strike directo.'
+        ] },
+        { t: 'h', text: 'Radio y coordinación' },
+        { t: 'p', text: 'Es obligatorio sintonizar la frecuencia de radio que marquen los organizadores en cada carrera, para compartir información y coordinarse ante posibles interferencias.' }
+      ] },
+      { title: 'Carreras y vehículos', blocks: [
+        { t: 'h', text: 'Creación de nuevas carreras' },
+        { t: 'p', text: 'Las nuevas carreras las crea el personal autorizado de CREWS, pero cualquier jugador puede proponer rutas abriendo un ticket. La propuesta debe incluir:' },
+        { t: 'ul', items: ['Mapa de la ruta.', 'Vehículo sugerido.', 'Personalización y uso de nitro.'] },
+        { t: 'p', text: 'Si se aprueba, se organizará un rol conjunto para oficializar la carrera.' },
+        { t: 'h', text: 'Clasificación de vehículos' },
+        { t: 'p', text: 'Los responsables de CREWS tienen un documento oficial con la clase de cada vehículo. Está en su canal de Discord y en este enlace:' },
+        { t: 'link', text: 'Ver las clases de coches', href: 'https://docs.google.com/spreadsheets/d/1i9LEa5xvodUGvMKJ1fdAxy83Mcpcbjvmk5yShdwWuO0/edit?usp=sharing' },
+        { t: 'note', text: 'Los encargados pueden cambiar vehículos y clases según el rendimiento observado y el feedback recibido.' }
+      ] }
+    ];
     var BOOKS = {
       general: { title: 'Normativa general', org: 'Willow Community', chapters: GENERAL },
       lspd: { title: 'Normativa SAPD', org: 'San Andreas Police Department', chapters: LSPD },
       bandas: { title: 'Bandas y organizaciones', org: 'Willow Community', chapters: BANDAS },
       negocios: { title: 'Normativa de negocios', org: 'Willow Community', chapters: NEGOCIOS },
-      ems: { title: 'Normativa SAMS', org: 'San Andreas Medical Service', chapters: EMS }
+      ems: { title: 'Normativa SAMS', org: 'San Andreas Medical Service', chapters: EMS },
+      crews: { title: 'Normativa Crews', org: 'Willow Community', chapters: CREWS }
     };
     var tabDefs = [
       { id: 'general', label: 'General' },
       { id: 'lspd', label: 'Policía (SAPD)' },
       { id: 'bandas', label: 'Bandas y organizaciones' },
       { id: 'negocios', label: 'Negocios' },
+      { id: 'crews', label: 'Crews' },
       { id: 'ems', label: 'Servicios médicos' },
       { id: 'meca', label: 'Mecánicos' }
     ];
@@ -1671,7 +1735,7 @@ class Component extends DCLogic {
     var cur = CH[ci];
     var chap = { num: pad(ci + 1), title: cur.title, blocks: cur.blocks.map(function (b) {
       return {
-        isH: b.t === 'h', isP: b.t === 'p', isNote: b.t === 'note', isUl: b.t === 'ul', isOl: b.t === 'ol', isChips: b.t === 'chips', isRanks: b.t === 'ranks', isKv: b.t === 'kv',
+        isH: b.t === 'h', isP: b.t === 'p', isNote: b.t === 'note', isUl: b.t === 'ul', isOl: b.t === 'ol', isChips: b.t === 'chips', isRanks: b.t === 'ranks', isKv: b.t === 'kv', isLink: b.t === 'link', href: b.href || '',
         text: b.text || '',
         list: (b.items || []).map(function (it, j) { return typeof it === 'string' ? { t: it, n: pad(j + 1) } : it; })
       };
