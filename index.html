@@ -58,11 +58,13 @@ a{color:#FFFFFF}a:hover{color:#CCCCCC}
 <div class="in-dim" style="position: absolute; inset: 0; background: rgba(4,4,4,0.45)"></div>
 <div class="in-flash" style="position: absolute; inset: 0; opacity: 0; background: #FFFFFF"></div>
 </div>
+<div class="in-clouds" style="position: absolute; inset: 0; pointer-events: none">
 <img class="in-cloud in-cloud-c" src="assets/img/cloud-c.webp" alt="" style="position: absolute; left: -15%; bottom: -25%; width: 130%; opacity: 0; pointer-events: none">
 <img class="in-cloud in-cloud-l" src="assets/img/cloud-l.webp" alt="" style="position: absolute; left: -30%; top: 5%; width: 85%; opacity: 0.5; filter: brightness(0.6); pointer-events: none">
 <img class="in-cloud in-cloud-r" src="assets/img/cloud-r.webp" alt="" style="position: absolute; right: -30%; top: 25%; width: 85%; opacity: 0.5; filter: brightness(0.6); pointer-events: none">
-<div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none">
-<img class="in-logo" src="assets/img/logo-w.png" alt="Logo de Willow Community" style="height: 42%; width: auto; filter: drop-shadow(0 30px 60px rgba(0,0,0,0.6))">
+</div>
+<div class="in-logo" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none">
+<img class="in-logo-in" src="assets/img/logo-w.png" alt="Logo de Willow Community" style="height: 42%; width: auto; filter: drop-shadow(0 30px 60px rgba(0,0,0,0.6))">
 </div>
 <div class="in-title" style="opacity: 0; position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; text-align: center; padding: 24px; pointer-events: none">
 <h2 style="margin: 0; font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: clamp(64px, 11vw, 176px); line-height: 0.88; text-transform: uppercase; color: #FFFFFF; text-shadow: 0 10px 50px rgba(0,0,0,0.7)"><span style="display: inline-block; overflow: hidden; vertical-align: top; padding: 0.06em 0; margin: -0.06em 0"><span class="in-word" style="display: inline-block">Willow</span></span><br><span style="display: inline-block; overflow: hidden; vertical-align: top; padding: 0.06em 0; margin: -0.06em 0"><span class="in-word" style="display: inline-block"><span style="color: transparent; -webkit-text-stroke: 3px #FFFFFF">Community</span></span></span></h2>
@@ -672,12 +674,14 @@ class Component extends DCLogic {
         .to(q('.in-sub'), { autoAlpha: 1, y: 0, duration: 0.04, ease: 'power2.out' }, 0.96);
 
       // Entrada al cargar
-      gsap.from(q('.in-logo'), { scale: 0.6, autoAlpha: 0, filter: 'blur(20px)', duration: 1.6, ease: 'expo.out', clearProps: 'filter' });
-      gsap.from(q('.in-cloud-l'), { xPercent: -25, autoAlpha: 0, duration: 2.2, ease: 'power3.out' });
-      gsap.from(q('.in-cloud-r'), { xPercent: 25, autoAlpha: 0, duration: 2.2, ease: 'power3.out' });
-      gsap.from(q('.in-hint'), { autoAlpha: 0, y: 20, duration: 1, delay: 1 });
+      gsap.from(q('.in-logo-in'), { scale: 0.6, autoAlpha: 0, duration: 1.6, ease: 'expo.out' });
+      gsap.from(q('.in-clouds'), { autoAlpha: 0, scale: 1.08, duration: 2.2, ease: 'power3.out' });
+      gsap.from(q('.in-hint > span'), { autoAlpha: 0, y: 12, duration: 1, delay: 0.8 });
       gsap.to(q('.in-chev'), { y: 6, duration: 0.9, repeat: -1, yoyo: true, ease: 'sine.inOut' });
       gsap.to(q('.in-cloud-l, .in-cloud-r').length ? q('.in-cloud-l') : [], { y: -14, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+
+      var onLoad = function () { ST.refresh(); };
+      if (document.readyState === 'complete') setTimeout(onLoad, 50); else window.addEventListener('load', onLoad, { once: true });
 
       // Barra de progreso de scroll
       gsap.to(q('.gs-progress'), { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: 0.3 } });
