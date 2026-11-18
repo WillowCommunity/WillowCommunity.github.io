@@ -814,11 +814,11 @@ class Component extends DCLogic {
     if (!gsap || !ST || this.props.animations === false) return;
     if (prevState && root) {
       var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!reduce && prevState.chap !== this.state.chap && !!this.state.normTab && this.state.normTab !== 'ems' && this.state.normTab !== 'meca') {
+      if (!reduce && prevState.chap !== this.state.chap && !!this.state.normTab && this.state.normTab !== 'meca') {
         var fwd = this.state.chap > prevState.chap;
         gsap.fromTo(root.querySelector('.bk-page'), { rotateY: fwd ? -75 : 35, autoAlpha: 0.2, transformOrigin: 'left center' }, { rotateY: 0, autoAlpha: 1, duration: 0.7, ease: 'power3.out', clearProps: 'transform' });
       }
-      if (!reduce && prevState.normTab !== this.state.normTab && !!this.state.normTab && this.state.normTab !== 'ems' && this.state.normTab !== 'meca') {
+      if (!reduce && prevState.normTab !== this.state.normTab && !!this.state.normTab && this.state.normTab !== 'meca') {
         gsap.fromTo(root.querySelector('.bk'), { y: 40, rotateX: 8, autoAlpha: 0, transformPerspective: 1600 }, { y: 0, rotateX: 0, autoAlpha: 1, duration: 0.8, ease: 'power3.out', clearProps: 'transform' });
       }
       if (prevState.normTab !== this.state.normTab || prevState.chap !== this.state.chap) { ST.refresh(); return; }
@@ -1461,11 +1461,145 @@ class Component extends DCLogic {
         ] }
       ] }
     ];
+    var EMS = [
+      { title: 'Información general', blocks: [
+        { t: 'p', text: 'El San Andreas Emergency Department (SAED) es el departamento oficial del gobierno encargado de atender médicamente y rescatar a los ciudadanos de San Andreas.' },
+        { t: 'p', text: 'Este documento recoge las normas del San Andreas Medical Service (SAMS) y sirve para informar a ciudadanos, médicos y aspirantes. Quien ignore alguna de estas normas podrá ser sancionado administrativamente.' },
+        { t: 'h', text: 'Requisitos para postular' },
+        { t: 'ul', items: [
+          'Edad mínima de 16 años (OOC).',
+          'Historial limpio de delitos graves.',
+          'Licencias para conducir motocicletas, coches y camiones.'
+        ] }
+      ] },
+      { title: 'Reglas generales', blocks: [
+        { t: 'h', text: 'Uso de los menús y la radio' },
+        { t: 'ul', items: [
+          'El mal uso de los menús F6, SAMS o de la tablet puede conllevar una sanción de la jefatura o de la administración.',
+          'El uso de la radio IC/OOC es obligatorio. No cumplirlo puede conllevar sanción.'
+        ] },
+        { t: 'h', text: 'Armas' },
+        { t: 'p', text: 'No se permite portar armas de ninguna categoría. Solo se podrá llevar táser, con aprobación previa e individual de la jefatura, para reducir a un agresor si fuese necesario y avisar a la policía.' },
+        { t: 'note', text: 'Incumplir esta norma conlleva la sanción correspondiente, que puede llegar a la expulsión inmediata.' },
+        { t: 'h', text: 'Tiempo de servicio' },
+        { t: 'ul', items: [
+          'Una vez en servicio, no se puede salir hasta pasados 30 minutos, salvo causa justificada.',
+          'El mínimo semanal es de 5 horas, salvo ausencia justificada y avisada en el canal de ausencias.',
+          'Está prohibido abusar del fichaje, quedarse AFK o evadir rol.'
+        ] }
+      ] },
+      { title: 'Protocolos del hospital', blocks: [
+        { t: 'h', text: 'Atención y trato al paciente' },
+        { t: 'ul', items: [
+          'Todos los ciudadanos tienen derecho a tratamiento, sea cual sea vuestra relación con ellos.',
+          'Un paciente deja de ser atendido si tiene al menos una factura sin pagar.',
+          'El comportamiento debe basarse en el respeto, la coherencia y la profesionalidad.'
+        ] },
+        { t: 'p', text: 'El orden de atención sigue esta prioridad:' },
+        { t: 'ol', items: ['Personal médico.', 'Policía.', 'Ciudadanos.', 'Personas con antecedentes delictivos.'] },
+        { t: 'h', text: 'Atención de alertas' },
+        { t: 'ul', items: [
+          'Para atender emergencias hacen falta como mínimo dos EMS en servicio, uno de ellos con rango superior a Auxiliar y con licencia de camión.',
+          'La asignación de patrullas depende exclusivamente del mando, que no puede participar en la intervención.'
+        ] },
+        { t: 'h', text: 'Indumentaria y ejercicio médico' },
+        { t: 'ul', items: [
+          'Es obligatorio llevar el uniforme que corresponda al rango y al rol que se esté haciendo. Está prohibido llevarlo fuera de servicio.',
+          'Las heridas leves se tratan en la sala de urgencias; las lesiones graves, en la sala de camillas.',
+          'Está prohibido atender fuera del hospital salvo que estés de patrulla. No cumplirlo puede conllevar sanción.'
+        ] },
+        { t: 'h', text: 'Control de personas' },
+        { t: 'ul', items: [
+          'El personal debe garantizar que en el área médica solo haya pacientes, para evitar aglomeraciones.',
+          'Los pacientes deben acudir con una vestimenta adecuada, salvo en escenas médicas justificadas.',
+          'Nadie ajeno al paciente y sin necesidad de atención médica puede quedarse en el recinto. Como máximo se permite un acompañante.'
+        ] }
+      ] },
+      { title: 'Conductas sancionables', blocks: [
+        { t: 'ul', items: [
+          'Agresiones físicas o verbales a cualquier persona, compañero o paciente, en el hospital o estando de servicio.',
+          'Actitudes o comentarios provocativos.',
+          'Robar o usar recursos del trabajo con fines personales.',
+          'Cometer actos delictivos durante el servicio.',
+          'Entrar de servicio para beneficiar un rol propio o ajeno.',
+          'Las faltas no justificadas pueden conllevar un strike.',
+          'Sacar cualquier tipo de material médico del recinto hospitalario, salvo durante el patrullaje. Puede sancionarse con la expulsión directa.'
+        ] },
+        { t: 'note', text: 'La jefatura del SAED se reserva el derecho a sancionar o poner strikes según la gravedad de la infracción.' },
+        { t: 'h', text: 'Relación con la policía (SAPD)' },
+        { t: 'ul', items: [
+          'Al ser una facción importante, siempre hay que mantener una compostura respetuosa ante el San Andreas Police Department (SAPD).',
+          'Es obligatorio colaborar con la policía cuando esté justificado. Negarse se considera evadir rol.',
+          'La policía no puede detener a ningún miembro del SAED que esté de servicio sin una orden justificada.'
+        ] },
+        { t: 'note', text: 'Incumplir este apartado es motivo de sanción directiva: según el caso, descenso de rango o expulsión del cuerpo.' }
+      ] },
+      { title: 'Ascensos', blocks: [
+        { t: 'h', text: 'Requisitos' },
+        { t: 'kv', items: [
+          { k: 'Especialidades', v: 'Rango mínimo de Médico.' },
+          { k: 'Instructor', v: 'Médico Experimentado.' },
+          { k: 'Recursos Humanos', v: 'Rango mínimo de Supervisor General.' }
+        ] },
+        { t: 'h', text: 'Sistema de promociones' },
+        { t: 'p', text: 'Las promociones se basan en el mérito, el tiempo de servicio y el compromiso con la facción. Teniendo esto en cuenta, se valorará un ascenso cada dos semanas.' },
+        { t: 'h', text: 'Horas requeridas' },
+        { t: 'kv', items: [
+          { k: 'Enfermero Licenciado', v: '10 horas.' },
+          { k: 'Médico Experimentado', v: '15 horas desde Paramédico.' },
+          { k: 'Resto de ascensos', v: '20 horas por nivel.' }
+        ] },
+        { t: 'p', text: 'Las horas se cuentan en periodos de dos semanas.' },
+        { t: 'h', text: 'Consideraciones' },
+        { t: 'ul', items: [
+          'Cumplir las horas mínimas no garantiza un ascenso si no hay un compromiso adicional.',
+          'La falta de interés por los rangos avanzados puede afectar a las promociones y al salario, e incluso suponer una bajada de rango.',
+          'El esfuerzo y la actitud positiva pueden evitar sanciones por bajo rendimiento.',
+          'En casos excepcionales se puede conceder un ascenso doble por méritos destacados.',
+          'Las ausencias prolongadas o no autorizadas pueden suponer la pérdida de rango o la expulsión.',
+          'En caso de CK, el nuevo personaje empieza con un rango inferior y debe esperar una semana para reincorporarse al servicio.',
+          'Los ascensos solo son válidos si hay actividad: una ausencia justificada no cuenta como actividad.'
+        ] }
+      ] },
+      { title: 'Radio, triaje y facturación', blocks: [
+        { t: 'h', text: 'Comunicaciones por radio' },
+        { t: 'ul', items: [
+          'Todo el personal en servicio debe estar conectado a la frecuencia de radio interna.',
+          'Solo el rango más alto en servicio asigna las alertas. Se pueden sugerir respuestas, pero necesitan autorización previa.',
+          'Hay que informar a la autoridad superior disponible al empezar y en cada movimiento importante.'
+        ] },
+        { t: 'h', text: 'Códigos radiales' },
+        { t: 'kv', items: [
+          { k: '10-04', v: 'Afirmativo' }, { k: '10-05', v: 'Negativo' }, { k: '10-08', v: 'Traslado de paciente' },
+          { k: '10-09', v: 'Repetir último mensaje' }, { k: '10-10', v: 'Salir de servicio' }, { k: '10-12', v: 'Retirarse de la zona' },
+          { k: '10-20', v: 'Ubicación actual' }, { k: '10-37', v: 'Solicitar grúa' }, { k: '10-38', v: 'Solicitar SAPD' },
+          { k: '10-39', v: 'Solicitar SAFD (bomberos)' }, { k: '10-41', v: 'Solicitar unidad de rescate aéreo' }, { k: '10-48', v: 'Modo Charlie' },
+          { k: '10-68', v: 'Emergencia prioritaria (policía)' }
+        ] },
+        { t: 'h', text: 'Claves' },
+        { t: 'kv', items: [
+          { k: 'Código 1', v: 'Sin luces ni sirenas' }, { k: 'Código 2', v: 'Con luces' }, { k: 'Código 3', v: 'Con luces y sirena' },
+          { k: 'Modo Charlie', v: 'Solo mensajes urgentes' }, { k: 'QRX', v: 'Silencio en la radio' }, { k: 'QRR', v: 'SAMS en apuros' },
+          { k: 'Interrogo', v: 'Formular una pregunta' }, { k: 'Prueba de radio', v: '5/5: nivel de señal y claridad' }
+        ] },
+        { t: 'h', text: 'Triaje' },
+        { t: 'kv', items: [
+          { k: 'Amarillo', v: 'Heridas menores' }, { k: 'Naranja', v: 'Lesión grave' }, { k: 'Rojo', v: 'Estado crítico' }, { k: 'Negro', v: 'Fallecido' }
+        ] },
+        { t: 'h', text: 'Facturación y sistemas médicos' },
+        { t: 'ul', items: [
+          'Las personas con seguro vigente no reciben factura hasta que les vence el seguro.',
+          'Las facturas dependen del procedimiento recibido.',
+          'Si no tiene seguro, el paciente puede renovarlo o pagar el cobro correspondiente.'
+        ] }
+      ] }
+    ];
     var BOOKS = {
       general: { title: 'Normativa general', org: 'Willow Community', chapters: GENERAL },
       lspd: { title: 'Normativa LSPD', org: 'Los Santos Police Department', chapters: LSPD },
       bandas: { title: 'Bandas y organizaciones', org: 'Willow Community', chapters: BANDAS },
-      negocios: { title: 'Normativa de negocios', org: 'Willow Community', chapters: NEGOCIOS }
+      negocios: { title: 'Normativa de negocios', org: 'Willow Community', chapters: NEGOCIOS },
+      ems: { title: 'Normativa SAMS', org: 'San Andreas Medical Service', chapters: EMS }
     };
     var tabDefs = [
       { id: 'general', label: 'General' },
@@ -1481,7 +1615,7 @@ class Component extends DCLogic {
       return { label: d.label, pressed: on ? 'true' : 'false', bg: on ? accent : 'transparent', fg: on ? '#0A0A0A' : '#EDEDED', border: on ? accent : '#3A3A3A',
         pick: function () { if (!on) self.setState({ normTab: d.id, chap: 0 }); } };
     });
-    var soonNames = { ems: 'de servicios médicos', meca: 'de mecánicos' };
+    var soonNames = { meca: 'de mecánicos' };
     var BOOK = BOOKS[tab] || BOOKS.general;
     var CH = BOOK.chapters;
     var ci = Math.max(0, Math.min(this.state.chap, CH.length - 1));
