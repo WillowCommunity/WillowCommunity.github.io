@@ -896,7 +896,7 @@ class Component extends DCLogic {
           'Haber realizado y aprobado un examen psicotécnico.'
         ] },
         { t: 'h', text: '2. Presentación de la candidatura' },
-        { t: 'p', text: 'Los interesados deberán rellenar el formulario de inscripción disponible en el portal oficial de la LSPD.' },
+        { t: 'p', text: 'Los interesados deberán rellenar el formulario de inscripción disponible en el portal oficial de la SAPD.' },
         { t: 'h', text: '3. Prueba teórica' },
         { t: 'p', text: 'Los aspirantes realizarán una evaluación teórica que consiste en un cuestionario oral. Para aprobar se necesitan al menos 5 respuestas correctas de un total de 10 preguntas.' },
         { t: 'h', text: '4. Prueba práctica' },
@@ -906,7 +906,7 @@ class Component extends DCLogic {
       ] },
       { title: 'Rangos y equipamiento', blocks: [
         { t: 'h', text: 'Rangos (de mayor a menor)' },
-        { t: 'ranks', items: ['Jefe de la LSPD', 'Jefe adjunto', 'Subjefe', 'Comandante', 'Capitán II', 'Capitán I', 'Teniente II', 'Teniente I', 'Sargento II', 'Sargento I', 'Inspector', 'Oficial III', 'Oficial II', 'Oficial I', 'Cadete'] },
+        { t: 'ranks', items: ['Jefe de la SAPD', 'Jefe adjunto', 'Subjefe', 'Comandante', 'Capitán II', 'Capitán I', 'Teniente II', 'Teniente I', 'Sargento II', 'Sargento I', 'Inspector', 'Oficial III', 'Oficial II', 'Oficial I', 'Cadete'] },
         { t: 'h', text: 'Equipamiento básico (todos los rangos)' },
         { t: 'chips', items: ['Pistola reglamentaria', 'Táser', 'Porra', 'Linterna'] },
         { t: 'p', text: 'Solo se podrán usar armas de mayor calibre con permiso de un rango superior, y siempre de acuerdo con el nivel DEFCON vigente.' },
@@ -1463,8 +1463,8 @@ class Component extends DCLogic {
     ];
     var EMS = [
       { title: 'Información general', blocks: [
-        { t: 'p', text: 'El San Andreas Emergency Department (SAED) es el departamento oficial del gobierno encargado de atender médicamente y rescatar a los ciudadanos de San Andreas.' },
-        { t: 'p', text: 'Este documento recoge las normas del San Andreas Medical Service (SAMS) y sirve para informar a ciudadanos, médicos y aspirantes. Quien ignore alguna de estas normas podrá ser sancionado administrativamente.' },
+        { t: 'p', text: 'El San Andreas Medical Service (SAMS) es el servicio médico oficial del gobierno, encargado de atender y rescatar a los ciudadanos de San Andreas.' },
+        { t: 'p', text: 'Este documento recoge sus normas y sirve para informar a ciudadanos, médicos y aspirantes. Quien ignore alguna de estas normas podrá ser sancionado administrativamente.' },
         { t: 'h', text: 'Requisitos para postular' },
         { t: 'ul', items: [
           'Edad mínima de 16 años (OOC).',
@@ -1525,12 +1525,12 @@ class Component extends DCLogic {
           'Las faltas no justificadas pueden conllevar un strike.',
           'Sacar cualquier tipo de material médico del recinto hospitalario, salvo durante el patrullaje. Puede sancionarse con la expulsión directa.'
         ] },
-        { t: 'note', text: 'La jefatura del SAED se reserva el derecho a sancionar o poner strikes según la gravedad de la infracción.' },
+        { t: 'note', text: 'La jefatura del SAMS se reserva el derecho a sancionar o poner strikes según la gravedad de la infracción.' },
         { t: 'h', text: 'Relación con la policía (SAPD)' },
         { t: 'ul', items: [
           'Al ser una facción importante, siempre hay que mantener una compostura respetuosa ante el San Andreas Police Department (SAPD).',
           'Es obligatorio colaborar con la policía cuando esté justificado. Negarse se considera evadir rol.',
-          'La policía no puede detener a ningún miembro del SAED que esté de servicio sin una orden justificada.'
+          'La policía no puede detener a ningún miembro del SAMS que esté de servicio sin una orden justificada.'
         ] },
         { t: 'note', text: 'Incumplir este apartado es motivo de sanción directiva: según el caso, descenso de rango o expulsión del cuerpo.' }
       ] },
@@ -1596,14 +1596,14 @@ class Component extends DCLogic {
     ];
     var BOOKS = {
       general: { title: 'Normativa general', org: 'Willow Community', chapters: GENERAL },
-      lspd: { title: 'Normativa LSPD', org: 'Los Santos Police Department', chapters: LSPD },
+      lspd: { title: 'Normativa SAPD', org: 'San Andreas Police Department', chapters: LSPD },
       bandas: { title: 'Bandas y organizaciones', org: 'Willow Community', chapters: BANDAS },
       negocios: { title: 'Normativa de negocios', org: 'Willow Community', chapters: NEGOCIOS },
       ems: { title: 'Normativa SAMS', org: 'San Andreas Medical Service', chapters: EMS }
     };
     var tabDefs = [
       { id: 'general', label: 'General' },
-      { id: 'lspd', label: 'Policía (LSPD)' },
+      { id: 'lspd', label: 'Policía (SAPD)' },
       { id: 'bandas', label: 'Bandas y organizaciones' },
       { id: 'negocios', label: 'Negocios' },
       { id: 'ems', label: 'Servicios médicos' },
