@@ -34,6 +34,9 @@ a{color:#FFFFFF}a:hover{color:#CCCCCC}
 .gs-shot{filter:grayscale(1);transition:filter .6s}
 .gs-shot:hover{filter:grayscale(0)}
 .in-scene{filter:grayscale(1) contrast(1.12)}
+.tw-status[data-live="1"]{background:#E5484D!important;color:#FFFFFF!important}
+.tw-status[data-live="0"]{background:#222222!important;color:#959595!important}
+#streamers [data-twitch] iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .gs-zoom-c{transition:transform .8s cubic-bezier(.2,.8,.2,1)}
 .gs-tilt:hover .gs-zoom-c{transform:scale(1.05)}
 </style>
@@ -88,6 +91,7 @@ a{color:#FFFFFF}a:hover{color:#CCCCCC}
 <a href="#caracteristicas" class="gs-navlink" style="color: #C8C8C8; text-decoration: none; padding: 10px 0">Características</a>
 <a href="#facciones" class="gs-navlink" style="color: #C8C8C8; text-decoration: none; padding: 10px 0">Facciones</a>
 <a href="#normas" class="gs-navlink" style="color: #C8C8C8; text-decoration: none; padding: 10px 0">Normativas</a>
+<a href="#streamers" class="gs-navlink" style="color: #C8C8C8; text-decoration: none; padding: 10px 0">Streamers</a>
 <a href="#donaciones" class="gs-navlink" style="color: #C8C8C8; text-decoration: none; padding: 10px 0">Donaciones</a>
 <a href="#faq" class="gs-navlink" style="color: #C8C8C8; text-decoration: none; padding: 10px 0">FAQ</a>
 <a href="https://discord.gg/pdurk6peBH" target="_blank" rel="noopener" class="gs-magnet" style="display: inline-block; background: #FFFFFF; color: #0A0A0A; text-decoration: none; font-weight: 700; padding: 12px 20px; border-radius: 999px">Únete al Discord</a>
@@ -392,6 +396,45 @@ a{color:#FFFFFF}a:hover{color:#CCCCCC}
 <img src="assets/img/medicos.webp" alt="Equipo médico de Willow" class="gs-shot" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 16px; border: 1px solid #262626">
 <img src="assets/img/mecanico.webp" alt="Mecánico en el taller" class="gs-shot" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 16px; border: 1px solid #262626">
 <img src="assets/img/bandas.webp" alt="Banda reunida en la ciudad" class="gs-shot" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 16px; border: 1px solid #262626">
+</div>
+</div>
+</section>
+
+<!-- STREAMERS -->
+<section id="streamers" style="border-bottom: 1px solid #222222">
+<div style="max-width: 1240px; margin: 0 auto; padding: 128px 24px; display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 720px">
+<p class="gs-reveal" style="margin: 0; display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #FFFFFF"><span class="st-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #E5484D"></span>Streamers</p>
+<h2 class="gs-title" style="margin: 0; font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: clamp(44px, 5.4vw, 72px); line-height: 0.98; text-transform: uppercase">Willow en directo</h2>
+<p class="gs-reveal" style="margin: 0; font-size: 18px; color: #BDBDBD">Vive la ciudad desde los ojos de nuestros creadores: persecuciones, negocios, bandas y mucho rol en directo.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch">
+<div class="gs-reveal" style="flex: 999 1 560px; min-width: 0">
+<div data-twitch="pirata_terco96" style="position: relative; aspect-ratio: 16 / 9; border-radius: 20px; overflow: hidden; border: 1px solid #2E2E2E; background: #111111">
+<a href="https://www.twitch.tv/pirata_terco96" target="_blank" rel="noopener" style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; text-decoration: none; color: #EDEDED; background: radial-gradient(ellipse at 50% 40%, #1E1E1E 0%, #0E0E0E 70%)">
+<span aria-hidden="true" style="width: 84px; height: 84px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="34" height="34" viewBox="0 0 24 24" fill="#0A0A0A"><path d="M8 5v14l11-7z"></path></svg></span>
+<span style="font-weight: 600">Ver el directo de pirata_terco96</span>
+</a>
+</div>
+</div>
+<div class="gs-reveal" style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 16px">
+<div style="background: #151515; border: 1px solid #262626; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; align-items: center; gap: 14px">
+<div aria-hidden="true" style="flex-shrink: 0; width: 60px; height: 60px; border-radius: 50%; background: #1F1F1F; border: 2px solid #3A3A3A; display: flex; align-items: center; justify-content: center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2H3v16h5v4l4-4h5l4-4V2z"></path><path d="M11 11V7M16 11V7"></path></svg></div>
+<div style="min-width: 0">
+<p style="margin: 0; font-size: 20px; font-weight: 700; word-break: break-word">pirata_terco96</p>
+<p style="margin: 4px 0 0"><span class="tw-status" data-twitch-status="pirata_terco96" style="display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; background: #222222; color: #C8C8C8">CANAL DE TWITCH</span></p>
+</div>
+</div>
+<p style="margin: 0; color: #ABABAB; font-size: 15px">Streamer de la comunidad. Pásate por su canal, síguele y no te pierdas sus directos en Willow.</p>
+<a href="https://www.twitch.tv/pirata_terco96" target="_blank" rel="noopener" class="gs-magnet" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 999px; background: #FFFFFF; color: #0A0A0A; text-decoration: none; font-weight: 700; font-size: 15px">Ver en Twitch</a>
+</div>
+<div style="flex: 1; background: transparent; border: 1px dashed #3A3A3A; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; justify-content: center; gap: 10px">
+<p style="margin: 0; font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: 26px; text-transform: uppercase">¿Haces directos en Willow?</p>
+<p style="margin: 0; color: #ABABAB; font-size: 15px">Únete al programa de streamers y aparece aquí cuando estés en directo.</p>
+<a href="https://discord.gg/pdurk6peBH" target="_blank" rel="noopener" style="align-self: flex-start; display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; margin-top: 4px; border-radius: 999px; border: 1px solid #3A3A3A; color: #EDEDED; text-decoration: none; font-weight: 600; font-size: 14px">Solicitarlo en Discord</a>
+</div>
+</div>
 </div>
 </div>
 </section>
@@ -1715,6 +1758,46 @@ class Component extends DCLogic {
   }
 }
 mountWillow(Component);
+</script>
+<script>
+/* Reproductores de Twitch con estado en directo */
+(function () {
+  var boxes = document.querySelectorAll('[data-twitch]');
+  if (!boxes.length) return;
+  var setStatus = function (ch, live) {
+    document.querySelectorAll('[data-twitch-status="' + ch + '"]').forEach(function (b) {
+      b.setAttribute('data-live', live ? '1' : '0');
+      b.textContent = live ? '● EN DIRECTO' : 'DESCONECTADO';
+    });
+  };
+  var start = function () {
+    boxes.forEach(function (box, i) {
+      var ch = box.getAttribute('data-twitch');
+      var holder = document.createElement('div');
+      holder.id = 'tw-player-' + i;
+      holder.style.cssText = 'position:absolute;inset:0';
+      box.innerHTML = '';
+      box.appendChild(holder);
+      try {
+        var p = new Twitch.Player(holder.id, { channel: ch, parent: [location.hostname], width: '100%', height: '100%', autoplay: false, muted: true });
+        p.addEventListener(Twitch.Player.ONLINE, function () { setStatus(ch, true); });
+        p.addEventListener(Twitch.Player.OFFLINE, function () { setStatus(ch, false); });
+      } catch (e) {}
+    });
+  };
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (ents) {
+    if (ents.some(function (e) { return e.isIntersecting; })) { io.disconnect(); load(); }
+  }, { rootMargin: '800px' }) : null;
+  var loaded = false;
+  function load() {
+    if (loaded) return; loaded = true;
+    var s = document.createElement('script');
+    s.src = 'https://player.twitch.tv/js/embed/v1.js';
+    s.onload = start;
+    document.head.appendChild(s);
+  }
+  if (io) boxes.forEach(function (b) { io.observe(b); }); else load();
+})();
 </script>
 </body>
 </html>
