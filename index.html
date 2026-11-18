@@ -1,0 +1,1582 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Willow Community – Servidor de roleplay de GTA V</title>
+<meta name="description" content="Willow Community: servidor de roleplay serio de GTA V (FiveM). Whitelist, +16. Únete a nuestro Discord y empieza tu historia.">
+<meta name="theme-color" content="#0A0A0A">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Willow Community – Roleplay GTA V">
+<meta property="og:description" content="Servidor de roleplay serio de GTA V. Whitelist, +16. Conéctate con: connect cfx.re/join/9vqaoe">
+<meta property="og:image" content="assets/img/portada.webp">
+<link rel="icon" type="image/png" href="assets/img/logo-w-small.png">
+<style>
+@font-face{font-family:'Big Shoulders Display';font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/big-shoulders-display-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Big Shoulders Display';font-style:normal;font-weight:800;font-display:swap;src:url(assets/fonts/big-shoulders-display-latin-800-normal.woff2) format('woff2')}
+@font-face{font-family:'Big Shoulders Display';font-style:normal;font-weight:900;font-display:swap;src:url(assets/fonts/big-shoulders-display-latin-900-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/inter-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(assets/fonts/inter-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/inter-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(assets/fonts/inter-latin-700-normal.woff2) format('woff2')}
+body{margin:0;background:#0A0A0A}
+html{scroll-behavior:smooth}
+a{color:#FFFFFF}a:hover{color:#CCCCCC}
+.gs-tilt{transition:border-color .3s}
+.gs-tilt:hover{border-color:#4A4A4A}
+.gs-navlink{transition:color .2s}
+.gs-navlink:hover{color:#FFFFFF}
+@media (max-width: 760px){nav .gs-navlink{display:none}nav{flex-wrap:nowrap!important}nav > a:first-child > span{font-size:19px!important}nav > a:first-child > img{width:30px!important}nav .gs-magnet{padding:10px 14px!important;font-size:13px;white-space:nowrap}}
+.gs-line{padding-bottom:0.04em}
+.in-window{-webkit-mask-image:url(assets/img/logo-w-mask.png);mask-image:url(assets/img/logo-w-mask.png);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:50% 50%;mask-position:50% 50%;-webkit-mask-size:auto 42%;mask-size:auto 42%}
+.gs-zoom{filter:grayscale(1);transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .6s}
+.gs-tilt:hover .gs-zoom{transform:scale(1.07);filter:grayscale(0)}
+.gs-shot{filter:grayscale(1);transition:filter .6s}
+.gs-shot:hover{filter:grayscale(0)}
+.in-scene{filter:grayscale(1) contrast(1.12)}
+.gs-zoom-c{transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.gs-tilt:hover .gs-zoom-c{transform:scale(1.05)}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+<div id="willow-root" style="min-height: 100vh; background: #0A0A0A; color: #EDEDED; font-family: 'Inter', system-ui, sans-serif; font-size: 16px; line-height: 1.6; overflow-x: clip">
+
+<!-- BARRA DE PROGRESO -->
+<div aria-hidden="true" class="gs-progress" style="position: fixed; top: 0; left: 0; right: 0; height: 3px; background: #FFFFFF; transform: scaleX(0); transform-origin: left center; z-index: 50"></div>
+
+<!-- INTRO -->
+<section id="intro" aria-label="Intro de Willow Community" style="position: relative; height: 100vh; height: 100svh; min-height: 560px; overflow: hidden; background: #040404">
+<div class="in-window" style="position: absolute; inset: 0">
+<div class="in-scene" style="position: absolute; inset: 0">
+<img class="in-s1" src="assets/img/shot1.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+<img class="in-s2" src="assets/img/shot2.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0">
+<img class="in-s3" src="assets/img/shot3.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0">
+<img class="in-s4" src="assets/img/interior-new.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0">
+</div>
+<div class="in-dim" style="position: absolute; inset: 0; background: rgba(4,4,4,0.45)"></div>
+<div class="in-flash" style="position: absolute; inset: 0; opacity: 0; background: #FFFFFF"></div>
+</div>
+<img class="in-cloud in-cloud-c" src="assets/img/cloud-c.webp" alt="" style="position: absolute; left: -15%; bottom: -25%; width: 130%; opacity: 0; pointer-events: none">
+<img class="in-cloud in-cloud-l" src="assets/img/cloud-l.webp" alt="" style="position: absolute; left: -30%; top: 5%; width: 85%; opacity: 0.5; filter: brightness(0.6); pointer-events: none">
+<img class="in-cloud in-cloud-r" src="assets/img/cloud-r.webp" alt="" style="position: absolute; right: -30%; top: 25%; width: 85%; opacity: 0.5; filter: brightness(0.6); pointer-events: none">
+<div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none">
+<img class="in-logo" src="assets/img/logo-w.png" alt="Logo de Willow Community" style="height: 42%; width: auto; filter: drop-shadow(0 30px 60px rgba(0,0,0,0.6))">
+</div>
+<div class="in-title" style="opacity: 0; position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; text-align: center; padding: 24px; pointer-events: none">
+<h2 style="margin: 0; font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: clamp(64px, 11vw, 176px); line-height: 0.88; text-transform: uppercase; color: #FFFFFF; text-shadow: 0 10px 50px rgba(0,0,0,0.7)"><span style="display: inline-block; overflow: hidden; vertical-align: top; padding: 0.06em 0; margin: -0.06em 0"><span class="in-word" style="display: inline-block">Willow</span></span><br><span style="display: inline-block; overflow: hidden; vertical-align: top; padding: 0.06em 0; margin: -0.06em 0"><span class="in-word" style="display: inline-block"><span style="color: transparent; -webkit-text-stroke: 3px #FFFFFF">Community</span></span></span></h2>
+<p class="in-sub" style="margin: 0; font-size: 15px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: #EDEDED; text-shadow: 0 2px 20px rgba(0,0,0,0.9)">Bienvenido a la ciudad</p>
+</div>
+<a href="#inicio" class="in-hint" style="position: absolute; left: 50%; bottom: 32px; margin-left: -90px; width: 180px; display: flex; flex-direction: column; align-items: center; gap: 8px; color: #C8C8C8; text-decoration: none; font-size: 12px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; padding: 8px 0">
+<span>Desliza para entrar</span>
+<svg class="in-chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+</a>
+</section>
+
+<!-- NAV -->
+<header style="position: sticky; top: 0; z-index: 20; background: rgba(10,10,10,0.78); backdrop-filter: blur(14px); border-bottom: 1px solid #222222">
+<nav aria-label="Principal" class="gs-nav" style="max-width: 1240px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<a href="#inicio" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #EDEDED">
+<img src="assets/img/logo-w-small.png" alt="" style="width: 38px; height: auto">
+<span style="font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: 26px; letter-spacing: 0.04em; text-transform: uppercase">Willow<span style="color: #FFFFFF"> Community</span></span>
+</a>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 26px; font-size: 15px; font-weight: 500">
+<a href="#sobre" class="gs-navlink" style="color: #C8C8C8; text-decoration: none; padding: 10px 0">Sobre nosotros</a>
+<a href="#caracteristicas" class="gs-navlink" style="color: #C8C8C8; text-decoration: none; padding: 10px 0">Características</a>
+<a href="#facciones" class="gs-navlink" style="color: #C8C8C8; text-decoration: none; padding: 10px 0">Facciones</a>
+<a href="#normas" class="gs-navlink" style="color: #C8C8C8; text-decoration: none; padding: 10px 0">Normativas</a>
+<a href="#donaciones" class="gs-navlink" style="color: #C8C8C8; text-decoration: none; padding: 10px 0">Donaciones</a>
+<a href="#faq" class="gs-navlink" style="color: #C8C8C8; text-decoration: none; padding: 10px 0">FAQ</a>
+<a href="https://discord.gg/pdurk6peBH" target="_blank" rel="noopener" class="gs-magnet" style="display: inline-block; background: #FFFFFF; color: #0A0A0A; text-decoration: none; font-weight: 700; padding: 12px 20px; border-radius: 999px">Únete al Discord</a>
+</div>
+</nav>
+</header>
+
+<!-- HERO -->
+<section id="inicio" style="position: relative; overflow: hidden; border-bottom: 1px solid #222222; min-height: min(88vh, 860px); display: flex; align-items: center">
+<div aria-hidden="true" style="position: absolute; inset: 0; background-image: linear-gradient(#1A1A1A 1px, transparent 1px), linear-gradient(90deg, #1A1A1A 1px, transparent 1px); background-size: 64px 64px; -webkit-mask-image: radial-gradient(ellipse at 60% 40%, #000 20%, transparent 70%); mask-image: radial-gradient(ellipse at 60% 40%, #000 20%, transparent 70%)"></div>
+<div aria-hidden="true" class="gs-glow" style="position: absolute; width: 640px; height: 640px; right: -120px; top: -160px; border-radius: 50%; background: radial-gradient(circle, #FFFFFF 0%, transparent 62%); opacity: 0.14; filter: blur(30px)"></div>
+<svg aria-hidden="true" class="gs-leaf" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.2" style="position: absolute; left: 6%; top: 18%; opacity: 0.35"><path d="M12 2C6 8 6 16 12 22C18 16 18 8 12 2Z"></path><path d="M12 5v15"></path></svg>
+<svg aria-hidden="true" class="gs-leaf" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.4" style="position: absolute; left: 44%; top: 12%; opacity: 0.28"><path d="M12 2C6 8 6 16 12 22C18 16 18 8 12 2Z"></path><path d="M12 5v15"></path></svg>
+<svg aria-hidden="true" class="gs-leaf" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1" style="position: absolute; right: 4%; bottom: 14%; opacity: 0.3"><path d="M12 2C6 8 6 16 12 22C18 16 18 8 12 2Z"></path><path d="M12 5v15"></path></svg>
+<svg aria-hidden="true" class="gs-leaf" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" style="position: absolute; left: 30%; bottom: 10%; opacity: 0.32"><path d="M12 2C6 8 6 16 12 22C18 16 18 8 12 2Z"></path><path d="M12 5v15"></path></svg>
+<svg aria-hidden="true" class="gs-leaf" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.3" style="position: absolute; right: 38%; bottom: 30%; opacity: 0.22"><path d="M12 2C6 8 6 16 12 22C18 16 18 8 12 2Z"></path><path d="M12 5v15"></path></svg>
+
+<div style="position: relative; z-index: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 96px 24px; box-sizing: border-box; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 64px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 28px">
+<p class="gs-hero-fade" style="margin: 0; display: inline-flex; align-self: flex-start; align-items: center; gap: 12px; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #ABABAB; border: 1px solid #2E2E2E; background: rgba(20,20,20,0.6); padding: 8px 16px; border-radius: 999px">
+<span style="position: relative; width: 8px; height: 8px; display: inline-block"><span class="gs-pulse" style="position: absolute; inset: 0; border-radius: 50%; background: #FFFFFF"></span><span style="position: absolute; inset: 0; border-radius: 50%; background: #FFFFFF"></span></span>Servidor de roleplay · GTA V</p>
+<h1 style="margin: 0; font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: clamp(60px, 8.4vw, 120px); line-height: 0.9; text-transform: uppercase; letter-spacing: 0.005em"><span style="display: inline-block; overflow: hidden; vertical-align: top; padding: 0.06em 0; margin: -0.06em 0"><span class="gs-hero-word" style="display: inline-block">Tu</span></span> <span style="display: inline-block; overflow: hidden; vertical-align: top; padding: 0.06em 0; margin: -0.06em 0"><span class="gs-hero-word" style="display: inline-block">historia</span></span> <span style="display: inline-block; overflow: hidden; vertical-align: top; padding: 0.06em 0; margin: -0.06em 0"><span class="gs-hero-word" style="display: inline-block">empieza</span></span> <span style="display: inline-block; overflow: hidden; vertical-align: top; padding: 0.06em 0; margin: -0.06em 0"><span class="gs-hero-word" style="display: inline-block">en</span></span> <span style="display: inline-block; overflow: hidden; vertical-align: top; padding: 0.06em 0; margin: -0.06em 0"><span class="gs-hero-word" style="display: inline-block; color: transparent; -webkit-text-stroke: 2px #FFFFFF">Willow</span></span></h1>
+<p class="gs-hero-fade" style="margin: 0; font-size: 19px; color: #BDBDBD; max-width: 540px">Una comunidad de roleplay serio donde cada personaje importa. Crea tu identidad, busca trabajo, monta un negocio o elige el lado oscuro de la ciudad. Tú decides quién quieres ser.</p>
+<div class="gs-hero-fade" style="display: flex; flex-wrap: wrap; gap: 12px">
+<a href="#unirse" class="gs-magnet" style="display: inline-flex; align-items: center; gap: 10px; background: #FFFFFF; color: #0A0A0A; text-decoration: none; font-weight: 700; font-size: 17px; padding: 17px 28px; border-radius: 999px">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>Empezar a jugar</a>
+<a href="https://cfx.re/join/9vqaoe" class="gs-magnet" style="display: inline-flex; align-items: center; background: rgba(20,20,20,0.6); color: #EDEDED; text-decoration: none; font-weight: 600; font-size: 17px; padding: 17px 28px; border-radius: 999px; border: 1px solid #3A3A3A">Conectar al servidor</a>
+</div>
+</div>
+<div class="gs-hero-media" style="display: flex; flex-direction: column; gap: 16px">
+<img src="assets/img/portada.webp" alt="Logo de Willow Community sobre la ciudad de Los Santos" class="gs-hero-shot" style="display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 20px; border: 1px solid #2E2E2E; box-shadow: 0 40px 80px -30px rgba(0,0,0,0.7)">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 12px">
+<div class="gs-hero-chip" style="background: rgba(20,20,20,0.8); border-radius: 14px; padding: 12px 12px 12px 18px; border: 1px solid #262626; display: flex; align-items: center; justify-content: space-between; gap: 12px" data-region="chip">
+<div style="min-width: 0">
+<p style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #959595">Conexión F8</p>
+<p style="margin: 4px 0 0; font-weight: 700; font-size: 15px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all">connect cfx.re/join/9vqaoe</p>
+</div>
+<button type="button" onClick="{{copy}}" aria-label="Copiar comando de conexión" style="flex-shrink: 0; min-width: 44px; height: 44px; padding: 0 12px; border-radius: 10px; border: 1px solid #3A3A3A; background: #1E1E1E; color: #EDEDED; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>{{copyLabel}}</button>
+</div>
+<div class="gs-hero-chip" style="background: rgba(20,20,20,0.8); border-radius: 14px; padding: 16px 18px; border: 1px solid #262626">
+<p style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #959595">Acceso</p>
+<p style="margin: 4px 0 0; font-weight: 700; font-size: 17px">Whitelist · +16</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CINTA EN MOVIMIENTO -->
+<section aria-hidden="true" style="padding: 40px 0; border-bottom: 1px solid #222222; overflow: hidden; display: flex; flex-direction: column; gap: 8px; font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: clamp(48px, 7vw, 96px); line-height: 1; text-transform: uppercase; white-space: nowrap">
+<div class="gs-marquee" style="display: flex; width: max-content">
+<div style="display: flex; align-items: center; gap: 40px; padding-right: 40px"><span>Rol serio</span><span style="color: #FFFFFF">✦</span><span>Economía</span><span style="color: #FFFFFF">✦</span><span>Facciones</span><span style="color: #FFFFFF">✦</span><span>Negocios</span><span style="color: #FFFFFF">✦</span><span>Historias</span><span style="color: #FFFFFF">✦</span></div>
+<div style="display: flex; align-items: center; gap: 40px; padding-right: 40px"><span>Rol serio</span><span style="color: #FFFFFF">✦</span><span>Economía</span><span style="color: #FFFFFF">✦</span><span>Facciones</span><span style="color: #FFFFFF">✦</span><span>Negocios</span><span style="color: #FFFFFF">✦</span><span>Historias</span><span style="color: #FFFFFF">✦</span></div>
+</div>
+<div class="gs-marquee-rev" style="display: flex; width: max-content; color: transparent; -webkit-text-stroke: 1.5px #4A4A4A">
+<div style="display: flex; align-items: center; gap: 40px; padding-right: 40px"><span>Policía</span><span>·</span><span>EMS</span><span>·</span><span>Mecánicos</span><span>·</span><span>Bandas</span><span>·</span><span>Civiles</span><span>·</span><span>Willow</span><span>·</span></div>
+<div style="display: flex; align-items: center; gap: 40px; padding-right: 40px"><span>Policía</span><span>·</span><span>EMS</span><span>·</span><span>Mecánicos</span><span>·</span><span>Bandas</span><span>·</span><span>Civiles</span><span>·</span><span>Willow</span><span>·</span></div>
+</div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre" style="max-width: 1240px; margin: 0 auto; padding: 128px 24px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 56px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 20px">
+<p class="gs-reveal" style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #FFFFFF">Sobre nosotros</p>
+<h2 class="gs-title" style="margin: 0; font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: clamp(44px, 5.4vw, 72px); line-height: 0.98; text-transform: uppercase">Una ciudad viva, hecha por sus jugadores</h2>
+</div>
+<div style="display: flex; flex-direction: column; gap: 20px; font-size: 18px; color: #BDBDBD">
+<p class="gs-reveal" style="margin: 0">Willow Community nace con una idea sencilla: que el rol sea lo primero. Aquí no se viene a ganar, se viene a vivir historias. Cada conversación, cada persecución y cada negocio forman parte de una ciudad que cambia con quienes la habitan.</p>
+<p class="gs-reveal" style="margin: 0">Buscamos jugadores que disfruten interpretando, que respeten a los demás y que quieran construir algo duradero. Si llevas años en el rol o es tu primera vez, en Willow encontrarás un sitio para ti y un equipo de staff dispuesto a ayudarte.</p>
+</div>
+</div>
+<div style="margin-top: 72px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px">
+<div class="gs-card" style="padding-top: 22px; position: relative">
+<div aria-hidden="true" class="gs-bar" style="position: absolute; top: 0; left: 0; right: 0; height: 2px; background: #FFFFFF; transform-origin: left center"></div>
+<h3 style="margin: 0 0 8px; font-size: 20px; font-weight: 700">Rol serio</h3>
+<p style="margin: 0; color: #ABABAB">Personajes con historia, motivaciones y consecuencias reales dentro de la ciudad.</p>
+</div>
+<div class="gs-card" style="padding-top: 22px; position: relative">
+<div aria-hidden="true" class="gs-bar" style="position: absolute; top: 0; left: 0; right: 0; height: 2px; background: #3A3A3A; transform-origin: left center"></div>
+<h3 style="margin: 0 0 8px; font-size: 20px; font-weight: 700">Comunidad sana</h3>
+<p style="margin: 0; color: #ABABAB">Respeto dentro y fuera del juego. Aquí nadie se queda solo.</p>
+</div>
+<div class="gs-card" style="padding-top: 22px; position: relative">
+<div aria-hidden="true" class="gs-bar" style="position: absolute; top: 0; left: 0; right: 0; height: 2px; background: #3A3A3A; transform-origin: left center"></div>
+<h3 style="margin: 0 0 8px; font-size: 20px; font-weight: 700">Staff cercano</h3>
+<p style="margin: 0; color: #ABABAB">Un equipo activo que escucha, resuelve dudas y cuida la experiencia.</p>
+</div>
+<div class="gs-card" style="padding-top: 22px; position: relative">
+<div aria-hidden="true" class="gs-bar" style="position: absolute; top: 0; left: 0; right: 0; height: 2px; background: #3A3A3A; transform-origin: left center"></div>
+<h3 style="margin: 0 0 8px; font-size: 20px; font-weight: 700">En constante mejora</h3>
+<p style="margin: 0; color: #ABABAB">Novedades y ajustes guiados por las propuestas de la comunidad.</p>
+</div>
+</div>
+</section>
+
+<!-- CARACTERISTICAS -->
+<section id="caracteristicas" style="background: #101010; border-top: 1px solid #222222; border-bottom: 1px solid #222222">
+<div style="max-width: 1240px; margin: 0 auto; padding: 128px 24px; display: flex; flex-direction: column; gap: 64px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 760px">
+<p class="gs-reveal" style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #FFFFFF">Características</p>
+<h2 class="gs-title" style="margin: 0; font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: clamp(44px, 5.4vw, 72px); line-height: 0.98; text-transform: uppercase">Todo lo que necesitas para rolear</h2>
+<p class="gs-reveal" style="margin: 0; font-size: 18px; color: #BDBDBD">Sistemas pensados para que el rol fluya y cada decisión tenga peso.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
+<div class="gs-card gs-tilt" style="background: #151515; border: 1px solid #262626; border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 14px">
+<div style="width: 56px; height: 56px; border-radius: 14px; background: #1E1E1E; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.5 0-2.5.9-2.5 2s1 1.7 2.5 2 2.5.9 2.5 2-1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5v1.5M12 16v1.5"></path></svg></div>
+<h3 style="margin: 0; font-size: 21px; font-weight: 700">Economía realista</h3>
+<p style="margin: 0; color: #ABABAB">Gana tu dinero trabajando, invierte en negocios y gestiona tus ahorros. Nada cae del cielo.</p>
+</div>
+<div class="gs-card gs-tilt" style="background: #151515; border: 1px solid #262626; border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 14px">
+<div style="width: 56px; height: 56px; border-radius: 14px; background: #1E1E1E; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"></path></svg></div>
+<h3 style="margin: 0; font-size: 21px; font-weight: 700">Trabajos legales</h3>
+<p style="margin: 0; color: #ABABAB">Mecánico, taxista, camionero, hostelería y mucho más. Empieza desde abajo y asciende.</p>
+</div>
+<div class="gs-card gs-tilt" style="background: #151515; border: 1px solid #262626; border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 14px">
+<div style="width: 56px; height: 56px; border-radius: 14px; background: #1E1E1E; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"></path><path d="M9 12l2 2 4-4"></path></svg></div>
+<h3 style="margin: 0; font-size: 21px; font-weight: 700">Servicios de emergencia</h3>
+<p style="margin: 0; color: #ABABAB">Policía y servicios médicos con rangos, formación y protocolos propios.</p>
+</div>
+<div class="gs-card gs-tilt" style="background: #151515; border: 1px solid #262626; border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 14px">
+<div style="width: 56px; height: 56px; border-radius: 14px; background: #1E1E1E; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a5 5 0 0 0-5 5v3H5v11h14V10h-2V7a5 5 0 0 0-5-5z"></path><path d="M9 10V7a3 3 0 0 1 6 0v3"></path></svg></div>
+<h3 style="margin: 0; font-size: 21px; font-weight: 700">Mundo criminal</h3>
+<p style="margin: 0; color: #ABABAB">Bandas, organizaciones y golpes planeados con rol de calidad y riesgos de verdad.</p>
+</div>
+<div class="gs-card gs-tilt" style="background: #151515; border: 1px solid #262626; border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 14px">
+<div style="width: 56px; height: 56px; border-radius: 14px; background: #1E1E1E; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1v-9z"></path></svg></div>
+<h3 style="margin: 0; font-size: 21px; font-weight: 700">Viviendas y negocios</h3>
+<p style="margin: 0; color: #ABABAB">Compra tu casa, abre tu local y deja tu huella en la ciudad.</p>
+</div>
+<div class="gs-card gs-tilt" style="background: #151515; border: 1px solid #262626; border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 14px">
+<div style="width: 56px; height: 56px; border-radius: 14px; background: #1E1E1E; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17h14M6 17l1.5-5h9L18 17M7.5 12l1.5-4h6l1.5 4"></path><circle cx="7.5" cy="18.5" r="1.5"></circle><circle cx="16.5" cy="18.5" r="1.5"></circle></svg></div>
+<h3 style="margin: 0; font-size: 21px; font-weight: 700">Vehículos</h3>
+<p style="margin: 0; color: #ABABAB">Concesionario, talleres, seguros y personalización para tu coche.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FACCIONES -->
+<section id="facciones" style="max-width: 1240px; margin: 0 auto; padding: 128px 24px; display: flex; flex-direction: column; gap: 56px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 640px">
+<p class="gs-reveal" style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #FFFFFF">Facciones</p>
+<h2 class="gs-title" style="margin: 0; font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: clamp(44px, 5.4vw, 72px); line-height: 0.98; text-transform: uppercase">Elige tu camino</h2>
+</div>
+<p class="gs-reveal" style="margin: 0; max-width: 420px; color: #ABABAB">Las plazas en facciones se solicitan a través de Discord. Consulta los requisitos de cada una en su canal.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px">
+<div class="gs-card gs-tilt" style="border-radius: 20px; overflow: hidden; border: 1px solid #262626; background: #151515">
+<img src="assets/img/policia.webp" alt="Agentes de la unidad SRU de la policía en una operación" class="gs-zoom" style="display: block; width: 100%; height: 200px; object-fit: cover; object-position: 40% 30%">
+<div style="padding: 24px; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #D0D0D0">Legal</p>
+<h3 style="margin: 0; font-size: 22px; font-weight: 700">Policía</h3>
+<p style="margin: 0; color: #ABABAB; font-size: 15px">Patrulla, investiga y mantén el orden en la ciudad.</p>
+</div>
+</div>
+<div class="gs-card gs-tilt" style="border-radius: 20px; overflow: hidden; border: 1px solid #262626; background: #151515">
+<img src="assets/img/medicos.webp" alt="Equipo de servicios médicos de Willow" class="gs-zoom" style="display: block; width: 100%; height: 200px; object-fit: cover; object-position: 50% 30%">
+<div style="padding: 24px; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #D0D0D0">Legal</p>
+<h3 style="margin: 0; font-size: 22px; font-weight: 700">Servicios médicos</h3>
+<p style="margin: 0; color: #ABABAB; font-size: 15px">Atiende emergencias y salva vidas en cada turno.</p>
+</div>
+</div>
+<div class="gs-card gs-tilt" style="border-radius: 20px; overflow: hidden; border: 1px solid #262626; background: #151515">
+<img src="assets/img/mecanico.webp" alt="Mecánico de Willow en el taller" class="gs-zoom" style="display: block; width: 100%; height: 200px; object-fit: cover; object-position: 50% 25%">
+<div style="padding: 24px; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #D0D0D0">Legal</p>
+<h3 style="margin: 0; font-size: 22px; font-weight: 700">Mecánicos</h3>
+<p style="margin: 0; color: #ABABAB; font-size: 15px">Repara, tunea y lleva el taller más conocido de la ciudad.</p>
+</div>
+</div>
+<div class="gs-card gs-tilt" style="border-radius: 20px; overflow: hidden; border: 1px solid #262626; background: #151515">
+<img src="assets/img/bandas.webp" alt="Miembros de una banda de Willow" class="gs-zoom" style="display: block; width: 100%; height: 200px; object-fit: cover; object-position: 50% 55%">
+<div style="padding: 24px; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #FFFFFF">Ilegal</p>
+<h3 style="margin: 0; font-size: 22px; font-weight: 700">Bandas y organizaciones</h3>
+<p style="margin: 0; color: #ABABAB; font-size: 15px">Territorio, lealtad y negocios al margen de la ley.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- COMO EMPEZAR -->
+<section id="unirse" class="gs-steps" style="background: #101010; border-top: 1px solid #222222; border-bottom: 1px solid #222222">
+<div style="max-width: 1240px; margin: 0 auto; padding: 128px 24px; display: flex; flex-direction: column; gap: 56px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 760px">
+<p class="gs-reveal" style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #FFFFFF">Cómo empezar</p>
+<h2 class="gs-title" style="margin: 0; font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: clamp(44px, 5.4vw, 72px); line-height: 0.98; text-transform: uppercase">Entra en la ciudad en 3 pasos</h2>
+</div>
+<div style="display: flex; flex-direction: column; gap: 28px">
+<div aria-hidden="true" style="height: 2px; background: #262626; position: relative; overflow: hidden; border-radius: 2px">
+<div class="gs-step-line" style="position: absolute; inset: 0; background: #FFFFFF; transform-origin: left center"></div>
+</div>
+<ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px">
+<li class="gs-card" style="background: #151515; border: 1px solid #262626; border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 12px">
+<span style="font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: 64px; line-height: 1; color: #FFFFFF">01</span>
+<h3 style="margin: 0; font-size: 22px; font-weight: 700">Únete al Discord</h3>
+<p style="margin: 0; color: #ABABAB">Es el centro de la comunidad: anuncios, soporte, solicitudes y todo lo que pasa en Willow.</p>
+</li>
+<li class="gs-card" style="background: #151515; border: 1px solid #262626; border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 12px">
+<span style="font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: 64px; line-height: 1; color: #FFFFFF">02</span>
+<h3 style="margin: 0; font-size: 22px; font-weight: 700">Lee las normas</h3>
+<p style="margin: 0; color: #ABABAB">Conocerlas es obligatorio. Garantizan que todos disfrutemos de un rol justo y de calidad.</p>
+</li>
+<li class="gs-card" style="background: #151515; border: 1px solid #262626; border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 12px">
+<span style="font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: 64px; line-height: 1; color: #FFFFFF">03</span>
+<h3 style="margin: 0; font-size: 22px; font-weight: 700">Conéctate y rolea</h3>
+<p style="margin: 0; color: #ABABAB">Supera la whitelist desde el Discord (+16), abre FiveM, pulsa F8 y escribe connect cfx.re/join/9vqaoe.</p>
+</li>
+</ol>
+</div>
+<div class="gs-reveal" style="display: flex; flex-wrap: wrap; gap: 12px">
+<a href="https://discord.gg/pdurk6peBH" target="_blank" rel="noopener" class="gs-magnet" style="display: inline-flex; align-items: center; gap: 10px; background: #FFFFFF; color: #0A0A0A; text-decoration: none; font-weight: 700; font-size: 17px; padding: 17px 28px; border-radius: 999px">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>Entrar al Discord</a>
+<a href="#normas" class="gs-magnet" style="display: inline-flex; align-items: center; color: #EDEDED; text-decoration: none; font-weight: 600; font-size: 17px; padding: 17px 28px; border-radius: 999px; border: 1px solid #3A3A3A">Ver normas</a>
+</div>
+</div>
+</section>
+
+<!-- NORMAS -->
+<section id="normas" style="max-width: 1240px; margin: 0 auto; padding: 128px 24px; display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 760px">
+<p class="gs-reveal" style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #FFFFFF">Normativas</p>
+<h2 class="gs-title" style="margin: 0; font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: clamp(44px, 5.4vw, 72px); line-height: 0.98; text-transform: uppercase">Las reglas de la ciudad</h2>
+<p class="gs-reveal" style="margin: 0; font-size: 18px; color: #BDBDBD">Elige una sección para consultar su normativa. Cada facción tiene la suya.</p>
+</div>
+<div data-region="norm" style="display: contents">
+<div role="group" aria-label="Normativas por facción" class="gs-reveal" style="display: flex; flex-wrap: wrap; gap: 10px">
+<sc-for list="{{normTabs}}" as="t" hint-placeholder-count="5">
+<button type="button" onClick="{{t.pick}}" aria-pressed="{{t.pressed}}" style="min-height: 44px; padding: 10px 22px; border-radius: 999px; border: 1px solid {{t.border}}; background: {{t.bg}}; color: {{t.fg}}; font: inherit; font-size: 15px; font-weight: 600; cursor: pointer">{{t.label}}</button>
+</sc-for>
+</div>
+
+
+
+<sc-if value="{{isBook}}" hint-placeholder-val="{{false}}">
+<div class="bk" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); border-radius: 14px; overflow: hidden; background: #F2F1EE; color: #1A1A1A; box-shadow: 0 50px 100px -40px rgba(0,0,0,0.9), 0 0 0 1px #2E2E2E; perspective: 2200px">
+<div style="padding: 44px 40px; display: flex; flex-direction: column; gap: 22px; background: linear-gradient(to right, #F2F1EE 82%, #E2E0DA); border-right: 1px solid #D4D2CC">
+<div style="display: flex; align-items: center; gap: 14px">
+<div aria-hidden="true" style="width: 52px; height: 52px; border-radius: 12px; background: #111111; display: flex; align-items: center; justify-content: center"><img src="assets/img/logo-w-small.png" alt="" style="width: 34px; height: auto"></div>
+<div>
+<p style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #555555">{{book.org}}</p>
+<p style="margin: 2px 0 0; font-size: 14px; color: #555555">Willow Community</p>
+</div>
+</div>
+<h3 style="margin: 0; font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: 52px; line-height: 0.95; text-transform: uppercase; color: #111111">{{book.title}}</h3>
+<p style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #555555">Índice</p>
+<ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px">
+<sc-for list="{{chapters}}" as="c" hint-placeholder-count="9">
+<li><button type="button" onClick="{{c.pick}}" aria-current="{{c.current}}" style="width: 100%; min-height: 44px; display: flex; align-items: center; gap: 14px; padding: 8px 12px; border: none; border-radius: 8px; background: {{c.bg}}; color: {{c.fg}}; font: inherit; font-size: 16px; font-weight: 600; text-align: left; cursor: pointer">
+<span style="font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: 20px; width: 28px; opacity: 0.6">{{c.num}}</span><span>{{c.title}}</span></button></li>
+</sc-for>
+</ol>
+</div>
+<div class="bk-page" style="padding: 44px 40px 28px; display: flex; flex-direction: column; gap: 18px; height: 720px; box-sizing: border-box; background: linear-gradient(to left, #F2F1EE 90%, #E6E4DE); transform-origin: left center">
+<div>
+<p style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #555555">Capítulo {{chap.num}}</p>
+<h3 style="margin: 6px 0 0; font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: 40px; line-height: 1; text-transform: uppercase; color: #111111">{{chap.title}}</h3>
+</div>
+<div class="bk-body" style="flex: 1; overflow-y: auto; padding-right: 8px; display: flex; flex-direction: column; gap: 14px; font-size: 16px; line-height: 1.6; color: #2A2A2A">
+<sc-for list="{{chap.blocks}}" as="b" hint-placeholder-count="4">
+<sc-if value="{{b.isH}}" hint-placeholder-val="{{false}}"><h4 style="margin: 10px 0 0; font-size: 17px; font-weight: 700; color: #111111">{{b.text}}</h4></sc-if>
+<sc-if value="{{b.isP}}" hint-placeholder-val="{{true}}"><p style="margin: 0">{{b.text}}</p></sc-if>
+<sc-if value="{{b.isNote}}" hint-placeholder-val="{{false}}"><p style="margin: 0; padding: 14px 16px; background: #E4E2DC; border-radius: 8px; font-weight: 500; color: #1A1A1A">{{b.text}}</p></sc-if>
+<sc-if value="{{b.isUl}}" hint-placeholder-val="{{false}}"><ul style="margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 6px"><sc-for list="{{b.list}}" as="it" hint-placeholder-count="3"><li>{{it.t}}</li></sc-for></ul></sc-if>
+<sc-if value="{{b.isOl}}" hint-placeholder-val="{{false}}"><ol style="margin: 0; padding-left: 24px; display: flex; flex-direction: column; gap: 6px"><sc-for list="{{b.list}}" as="it" hint-placeholder-count="3"><li>{{it.t}}</li></sc-for></ol></sc-if>
+<sc-if value="{{b.isChips}}" hint-placeholder-val="{{false}}"><div style="display: flex; flex-wrap: wrap; gap: 8px"><sc-for list="{{b.list}}" as="it" hint-placeholder-count="4"><span style="padding: 6px 12px; border-radius: 999px; background: #FFFFFF; border: 1px solid #CFCDC7; font-size: 14px; font-weight: 600; color: #1A1A1A">{{it.t}}</span></sc-for></div></sc-if>
+<sc-if value="{{b.isRanks}}" hint-placeholder-val="{{false}}"><ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px"><sc-for list="{{b.list}}" as="it" hint-placeholder-count="5"><li style="display: flex; align-items: center; gap: 12px; padding: 7px 12px; background: #FFFFFF; border: 1px solid #DEDCD6; border-radius: 6px"><span style="font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: 16px; color: #777777; width: 22px">{{it.n}}</span><span style="font-weight: 600">{{it.t}}</span></li></sc-for></ol></sc-if>
+<sc-if value="{{b.isKv}}" hint-placeholder-val="{{false}}"><dl style="margin: 0; display: flex; flex-direction: column"><sc-for list="{{b.list}}" as="it" hint-placeholder-count="4"><div style="display: grid; grid-template-columns: minmax(80px, 30%) 1fr; gap: 16px; padding: 10px 0; border-bottom: 1px solid #DEDCD6"><dt style="font-weight: 700; color: #111111">{{it.k}}</dt><dd style="margin: 0">{{it.v}}</dd></div></sc-for></dl></sc-if>
+</sc-for>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 12px; border-top: 1px solid #D4D2CC">
+<button type="button" onClick="{{prevChap}}" disabled="{{isFirst}}" aria-label="Capítulo anterior" style="min-width: 44px; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid #BDBBB5; background: transparent; color: #1A1A1A; font: inherit; font-weight: 600; cursor: pointer; opacity: {{prevOpacity}}">← Anterior</button>
+<span style="font-size: 14px; font-weight: 600; color: #555555">{{chap.num}} / {{chapTotal}}</span>
+<button type="button" onClick="{{nextChap}}" disabled="{{isLast}}" aria-label="Capítulo siguiente" style="min-width: 44px; min-height: 44px; padding: 0 16px; border-radius: 999px; border: none; background: #111111; color: #FFFFFF; font: inherit; font-weight: 600; cursor: pointer; opacity: {{nextOpacity}}">Siguiente →</button>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isSoon}}" hint-placeholder-val="{{false}}">
+<div style="border: 1px dashed #3A3A3A; border-radius: 20px; padding: 64px 32px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center">
+<p style="margin: 0; font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: 36px; text-transform: uppercase">Normativa {{soonName}}</p>
+<p style="margin: 0; color: #ABABAB; max-width: 480px">Esta normativa estará disponible muy pronto. Mientras tanto, consulta las dudas en el canal de la facción en Discord.</p>
+</div>
+</sc-if>
+</div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria" style="background: #101010; border-top: 1px solid #222222; border-bottom: 1px solid #222222">
+<div style="max-width: 1240px; margin: 0 auto; padding: 128px 24px; display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 760px">
+<p class="gs-reveal" style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #FFFFFF">Galería</p>
+<h2 class="gs-title" style="margin: 0; font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: clamp(44px, 5.4vw, 72px); line-height: 0.98; text-transform: uppercase">Momentos en Willow</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: 16px">
+<img src="assets/img/policia.webp" alt="Unidad SRU de la policía de Willow" class="gs-shot" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 16px; border: 1px solid #262626">
+<img src="assets/img/medicos.webp" alt="Equipo médico de Willow" class="gs-shot" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 16px; border: 1px solid #262626">
+<img src="assets/img/mecanico.webp" alt="Mecánico en el taller" class="gs-shot" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 16px; border: 1px solid #262626">
+<img src="assets/img/bandas.webp" alt="Banda reunida en la ciudad" class="gs-shot" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 16px; border: 1px solid #262626">
+</div>
+</div>
+</section>
+
+<!-- STAFF -->
+<section id="staff" style="max-width: 1240px; margin: 0 auto; padding: 128px 24px; display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 760px">
+<p class="gs-reveal" style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #FFFFFF">Equipo</p>
+<h2 class="gs-title" style="margin: 0; font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: clamp(44px, 5.4vw, 72px); line-height: 0.98; text-transform: uppercase">El staff de Willow</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 16px">
+<div class="gs-card gs-tilt" style="background: #151515; border: 1px solid #262626; border-radius: 20px; padding: 32px 20px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center">
+<div style="width: 104px; height: 104px; border-radius: 50%; background: #1F1F1F; border: 2px solid #FFFFFF; display: flex; align-items: center; justify-content: center; overflow: hidden">
+<img src="assets/img/logo-w.png" alt="" style="width: 70%; height: auto">
+</div>
+<h3 style="margin: 0; font-size: 20px; font-weight: 700; word-break: break-word">Luiz</h3>
+<p style="margin: 0; color: #ABABAB; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase">Fundador</p>
+</div>
+<div class="gs-card gs-tilt" style="background: #151515; border: 1px solid #262626; border-radius: 20px; padding: 32px 20px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center">
+<div style="width: 104px; height: 104px; border-radius: 50%; background: #1F1F1F; border: 2px solid #FFFFFF; display: flex; align-items: center; justify-content: center; overflow: hidden">
+<img src="assets/img/logo-w.png" alt="" style="width: 70%; height: auto">
+</div>
+<h3 style="margin: 0; font-size: 20px; font-weight: 700; word-break: break-word">MegaMonikiya</h3>
+<p style="margin: 0; color: #ABABAB; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase">Co-fundadora</p>
+</div>
+<div class="gs-card gs-tilt" style="background: #151515; border: 1px solid #262626; border-radius: 20px; padding: 32px 20px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center">
+<div style="width: 104px; height: 104px; border-radius: 50%; background: #1F1F1F; border: 2px solid #3A3A3A; display: flex; align-items: center; justify-content: center; overflow: hidden">
+<img src="assets/img/logo-w.png" alt="" style="width: 70%; height: auto">
+</div>
+<h3 style="margin: 0; font-size: 20px; font-weight: 700; word-break: break-word">Abuelotagtiko</h3>
+<p style="margin: 0; color: #ABABAB; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase">Programador</p>
+</div>
+<div class="gs-card gs-tilt" style="background: #151515; border: 1px solid #262626; border-radius: 20px; padding: 32px 20px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center">
+<div style="width: 104px; height: 104px; border-radius: 50%; background: #1F1F1F; border: 2px solid #3A3A3A; display: flex; align-items: center; justify-content: center; overflow: hidden">
+<img src="assets/img/logo-w.png" alt="" style="width: 70%; height: auto">
+</div>
+<h3 style="margin: 0; font-size: 20px; font-weight: 700; word-break: break-word">Deku</h3>
+<p style="margin: 0; color: #ABABAB; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase">Administrador</p>
+</div>
+<div class="gs-card gs-tilt" style="background: #151515; border: 1px solid #262626; border-radius: 20px; padding: 32px 20px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center">
+<div style="width: 104px; height: 104px; border-radius: 50%; background: #1F1F1F; border: 2px solid #3A3A3A; display: flex; align-items: center; justify-content: center; overflow: hidden">
+<img src="assets/img/logo-w.png" alt="" style="width: 70%; height: auto">
+</div>
+<h3 style="margin: 0; font-size: 20px; font-weight: 700; word-break: break-word">Todoroki</h3>
+<p style="margin: 0; color: #ABABAB; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase">Administrador</p>
+</div>
+<div class="gs-card gs-tilt" style="background: #151515; border: 1px solid #262626; border-radius: 20px; padding: 32px 20px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center">
+<div style="width: 104px; height: 104px; border-radius: 50%; background: #1F1F1F; border: 2px solid #3A3A3A; display: flex; align-items: center; justify-content: center; overflow: hidden">
+<img src="assets/img/logo-w.png" alt="" style="width: 70%; height: auto">
+</div>
+<h3 style="margin: 0; font-size: 20px; font-weight: 700; word-break: break-word">Nazuver</h3>
+<p style="margin: 0; color: #ABABAB; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase">Administrador</p>
+</div>
+</div>
+</section>
+
+<!-- DONACIONES -->
+<section id="donaciones" style="background: #101010; border-top: 1px solid #222222; border-bottom: 1px solid #222222">
+<div style="max-width: 1240px; margin: 0 auto; padding: 128px 24px; display: flex; flex-direction: column; gap: 48px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 680px">
+<p class="gs-reveal" style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #FFFFFF">Donaciones</p>
+<h2 class="gs-title" style="margin: 0; font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: clamp(44px, 5.4vw, 72px); line-height: 0.98; text-transform: uppercase">Apoya a Willow</h2>
+<p class="gs-reveal" style="margin: 0; font-size: 18px; color: #BDBDBD">Las donaciones son voluntarias y nos ayudan a mantener el servidor y seguir mejorándolo. Como agradecimiento, puedes conseguir contenido exclusivo para tu personaje.</p>
+</div>
+<a href="https://discord.gg/5Z8ar34CXG" target="_blank" rel="noopener" class="gs-magnet gs-reveal" style="display: inline-flex; align-items: center; gap: 10px; background: #FFFFFF; color: #0A0A0A; text-decoration: none; font-weight: 700; font-size: 17px; padding: 17px 28px; border-radius: 999px">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2l-2 4v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6l-2-4z"></path><path d="M4 6h16M16 10a4 4 0 0 1-8 0"></path></svg>Donar en Discord</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 28px" data-region="don">
+<div role="group" aria-label="Categorías de donación" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 12px">
+<button type="button" onClick="{{cats.talleres.pick}}" aria-pressed="{{cats.talleres.pressed}}" class="gs-card" style="display: flex; align-items: center; gap: 14px; min-height: 76px; padding: 14px 16px; border-radius: 16px; border: 1px solid {{cats.talleres.border}}; background: {{cats.talleres.bg}}; color: {{cats.talleres.fg}}; font: inherit; text-align: left; cursor: pointer">
+<span style="flex-shrink: 0; width: 48px; height: 48px; border-radius: 12px; background: {{cats.talleres.icBg}}; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="{{cats.talleres.ic}}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"></path></svg></span>
+<span style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 17px; font-weight: 700">Talleres</span><span style="font-size: 13px; opacity: 0.75">{{cats.talleres.count}}</span></span>
+</button>
+<button type="button" onClick="{{cats.restaurantes.pick}}" aria-pressed="{{cats.restaurantes.pressed}}" class="gs-card" style="display: flex; align-items: center; gap: 14px; min-height: 76px; padding: 14px 16px; border-radius: 16px; border: 1px solid {{cats.restaurantes.border}}; background: {{cats.restaurantes.bg}}; color: {{cats.restaurantes.fg}}; font: inherit; text-align: left; cursor: pointer">
+<span style="flex-shrink: 0; width: 48px; height: 48px; border-radius: 12px; background: {{cats.restaurantes.icBg}}; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="{{cats.restaurantes.ic}}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v8a2 2 0 0 0 2 2v8M5 3v5M9 3v5M17 3c-2 0-3 3-3 6s1 4 3 4v8"></path></svg></span>
+<span style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 17px; font-weight: 700">Restaurantes</span><span style="font-size: 13px; opacity: 0.75">{{cats.restaurantes.count}}</span></span>
+</button>
+<button type="button" onClick="{{cats.helicopteros.pick}}" aria-pressed="{{cats.helicopteros.pressed}}" class="gs-card" style="display: flex; align-items: center; gap: 14px; min-height: 76px; padding: 14px 16px; border-radius: 16px; border: 1px solid {{cats.helicopteros.border}}; background: {{cats.helicopteros.bg}}; color: {{cats.helicopteros.fg}}; font: inherit; text-align: left; cursor: pointer">
+<span style="flex-shrink: 0; width: 48px; height: 48px; border-radius: 12px; background: {{cats.helicopteros.icBg}}; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="{{cats.helicopteros.ic}}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M12 6v3M6 13c0-2.2 2.7-4 6-4h3a4 4 0 0 1 0 8h-6c-1.7 0-3-1.8-3-4zM6 13H2M9 17l-1 3h8l-1-3"></path></svg></span>
+<span style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 17px; font-weight: 700">Helicópteros</span><span style="font-size: 13px; opacity: 0.75">{{cats.helicopteros.count}}</span></span>
+</button>
+<button type="button" onClick="{{cats.coches.pick}}" aria-pressed="{{cats.coches.pressed}}" class="gs-card" style="display: flex; align-items: center; gap: 14px; min-height: 76px; padding: 14px 16px; border-radius: 16px; border: 1px solid {{cats.coches.border}}; background: {{cats.coches.bg}}; color: {{cats.coches.fg}}; font: inherit; text-align: left; cursor: pointer">
+<span style="flex-shrink: 0; width: 48px; height: 48px; border-radius: 12px; background: {{cats.coches.icBg}}; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="{{cats.coches.ic}}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17h14M6 17l1.5-5h9L18 17M7.5 12l1.5-4h6l1.5 4"></path><circle cx="7.5" cy="18.5" r="1.5"></circle><circle cx="16.5" cy="18.5" r="1.5"></circle></svg></span>
+<span style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 17px; font-weight: 700">Coches</span><span style="font-size: 13px; opacity: 0.75">{{cats.coches.count}}</span></span>
+</button>
+<button type="button" onClick="{{cats.barcos.pick}}" aria-pressed="{{cats.barcos.pressed}}" class="gs-card" style="display: flex; align-items: center; gap: 14px; min-height: 76px; padding: 14px 16px; border-radius: 16px; border: 1px solid {{cats.barcos.border}}; background: {{cats.barcos.bg}}; color: {{cats.barcos.fg}}; font: inherit; text-align: left; cursor: pointer">
+<span style="flex-shrink: 0; width: 48px; height: 48px; border-radius: 12px; background: {{cats.barcos.icBg}}; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="{{cats.barcos.ic}}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0M5 14l1-5h12l1 5M12 4v5M9 6h6"></path></svg></span>
+<span style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 17px; font-weight: 700">Barcos</span><span style="font-size: 13px; opacity: 0.75">{{cats.barcos.count}}</span></span>
+</button>
+<button type="button" onClick="{{cats.motos.pick}}" aria-pressed="{{cats.motos.pressed}}" class="gs-card" style="display: flex; align-items: center; gap: 14px; min-height: 76px; padding: 14px 16px; border-radius: 16px; border: 1px solid {{cats.motos.border}}; background: {{cats.motos.bg}}; color: {{cats.motos.fg}}; font: inherit; text-align: left; cursor: pointer">
+<span style="flex-shrink: 0; width: 48px; height: 48px; border-radius: 12px; background: {{cats.motos.icBg}}; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="{{cats.motos.ic}}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="16.5" r="3.5"></circle><circle cx="18.5" cy="16.5" r="3.5"></circle><path d="M5.5 16.5l4-6h5l4 6M12 10.5l-1.5-3H8M14.5 10.5l1.5-3h2"></path></svg></span>
+<span style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 17px; font-weight: 700">Motos</span><span style="font-size: 13px; opacity: 0.75">{{cats.motos.count}}</span></span>
+</button>
+<button type="button" onClick="{{cats.mansiones.pick}}" aria-pressed="{{cats.mansiones.pressed}}" class="gs-card" style="display: flex; align-items: center; gap: 14px; min-height: 76px; padding: 14px 16px; border-radius: 16px; border: 1px solid {{cats.mansiones.border}}; background: {{cats.mansiones.bg}}; color: {{cats.mansiones.fg}}; font: inherit; text-align: left; cursor: pointer">
+<span style="flex-shrink: 0; width: 48px; height: 48px; border-radius: 12px; background: {{cats.mansiones.icBg}}; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="{{cats.mansiones.ic}}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6M3 11l9-7 9 7"></path></svg></span>
+<span style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 17px; font-weight: 700">Mansiones</span><span style="font-size: 13px; opacity: 0.75">{{cats.mansiones.count}}</span></span>
+</button>
+<button type="button" onClick="{{cats.discotecas.pick}}" aria-pressed="{{cats.discotecas.pressed}}" class="gs-card" style="display: flex; align-items: center; gap: 14px; min-height: 76px; padding: 14px 16px; border-radius: 16px; border: 1px solid {{cats.discotecas.border}}; background: {{cats.discotecas.bg}}; color: {{cats.discotecas.fg}}; font: inherit; text-align: left; cursor: pointer">
+<span style="flex-shrink: 0; width: 48px; height: 48px; border-radius: 12px; background: {{cats.discotecas.icBg}}; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="{{cats.discotecas.ic}}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l11-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="17" cy="16" r="3"></circle></svg></span>
+<span style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 17px; font-weight: 700">Discotecas</span><span style="font-size: 13px; opacity: 0.75">{{cats.discotecas.count}}</span></span>
+</button>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; padding-top: 8px">
+<h3 style="margin: 0; font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: 40px; text-transform: uppercase">{{donCatName}}</h3>
+<p style="margin: 0; color: #959595; font-size: 15px">Precio a consultar por Discord</p>
+</div>
+<sc-if value="{{donHasItems}}" hint-placeholder-val="{{true}}">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 20px">
+<sc-for list="{{donItems}}" as="it" hint-placeholder-count="1">
+<article class="gs-tilt" style="background: #151515; border: 1px solid #262626; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column">
+<div style="position: relative; overflow: hidden">
+<img src="{{it.img}}" alt="{{it.alt}}" class="gs-zoom-c" style="display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; filter: {{it.filter}}; opacity: {{it.imgOpacity}}">
+<span style="position: absolute; top: 14px; left: 14px; display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; background: {{it.badgeBg}}; color: {{it.badgeFg}}; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; border: 1px solid {{it.badgeBorder}}"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: {{it.dot}}"></span>{{it.status}}</span>
+<sc-if value="{{it.hasThumbs}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; left: 0; right: 0; bottom: 6px; display: flex; justify-content: center; gap: 2px">
+<sc-for list="{{it.thumbs}}" as="th" hint-placeholder-count="2">
+<button type="button" onClick="{{th.pick}}" aria-label="{{th.label}}" aria-pressed="{{th.pressed}}" style="width: 44px; height: 44px; padding: 0; border: none; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center"><span style="display: block; width: {{th.dotW}}; height: 8px; border-radius: 999px; background: {{th.dotBg}}; box-shadow: 0 1px 6px rgba(0,0,0,0.6); transition: width 0.3s"></span></button>
+</sc-for>
+</div>
+</sc-if>
+</div>
+<div style="padding: 24px; display: flex; flex-direction: column; gap: 10px; flex: 1">
+<h4 style="margin: 0; font-size: 24px; font-weight: 700">{{it.name}}</h4>
+<p style="margin: 0; color: #ABABAB; flex: 1">{{it.desc}}</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding-top: 14px; border-top: 1px solid #262626">
+<span style="font-size: 14px; color: #959595">Precio: <strong style="color: #EDEDED">consultar por Discord</strong></span>
+<sc-if value="{{it.available}}" hint-placeholder-val="{{true}}">
+<a href="https://discord.gg/5Z8ar34CXG" target="_blank" rel="noopener" class="gs-magnet" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 999px; background: #FFFFFF; color: #0A0A0A; text-decoration: none; font-weight: 700; font-size: 14px">Consultar en Discord</a>
+</sc-if>
+<sc-if value="{{it.sold}}" hint-placeholder-val="{{false}}">
+<span style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid #3A3A3A; color: #959595; font-weight: 600; font-size: 14px">Ya tiene dueño</span>
+</sc-if>
+</div>
+</div>
+</article>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{donEmpty}}" hint-placeholder-val="{{false}}">
+<div style="border: 1px dashed #3A3A3A; border-radius: 20px; padding: 56px 32px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center">
+<p style="margin: 0; font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: 30px; text-transform: uppercase">Próximamente</p>
+<p style="margin: 0; color: #ABABAB; max-width: 460px">Todavía no hay {{donCatLower}} disponibles. Pregunta en Discord si buscas algo concreto.</p>
+</div>
+</sc-if>
+</div>
+<div class="gs-reveal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px">
+<div style="display: flex; gap: 14px; padding: 20px; border: 1px solid #262626; border-radius: 16px">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 2px"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"></path></svg>
+<p style="margin: 0; color: #ABABAB; font-size: 15px"><strong style="color: #EDEDED">Se conservan tras un CK.</strong> Según la normativa general, los bienes donados no se pierden aunque tu personaje sufra un CK.</p>
+</div>
+<div style="display: flex; gap: 14px; padding: 20px; border: 1px solid #262626; border-radius: 16px">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 2px"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+<p style="margin: 0; color: #ABABAB; font-size: 15px"><strong style="color: #EDEDED">¿Dudas?</strong> Abre un ticket en Discord antes de donar y el staff te ayudará a elegir.</p>
+</div>
+<div style="display: flex; gap: 14px; padding: 20px; border: 1px solid #262626; border-radius: 16px">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 2px"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16h.01"></path></svg>
+<p style="margin: 0; color: #ABABAB; font-size: 15px">Willow Community es un servidor independiente, no afiliado ni respaldado por Rockstar Games ni Take-Two Interactive.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="background: #101010; border-top: 1px solid #222222; border-bottom: 1px solid #222222">
+<div style="max-width: 900px; margin: 0 auto; padding: 128px 24px; display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<p class="gs-reveal" style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #FFFFFF">Preguntas frecuentes</p>
+<h2 class="gs-title" style="margin: 0; font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: clamp(44px, 5.4vw, 72px); line-height: 0.98; text-transform: uppercase">¿Tienes dudas?</h2>
+</div>
+<div style="display: flex; flex-direction: column; border-top: 1px solid #262626" data-region="faq">
+<sc-for list="{{faqs}}" as="f" hint-placeholder-count="6">
+<div class="gs-rule" style="border-bottom: 1px solid #262626">
+<button type="button" onClick="{{f.toggle}}" aria-expanded="{{f.expanded}}" style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px; background: none; border: none; color: #EDEDED; font: inherit; font-size: 19px; font-weight: 600; text-align: left; padding: 24px 0; cursor: pointer; min-height: 44px">
+<span>{{f.q}}</span>
+<span aria-hidden="true" style="flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; border: 1px solid #3A3A3A; display: flex; align-items: center; justify-content: center; transition: transform 0.4s cubic-bezier(.2,.8,.2,1); transform: rotate({{f.rot}}deg)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+</button>
+<sc-if value="{{f.open}}" hint-placeholder-val="{{false}}">
+<div class="gs-faq-a" style="overflow: hidden">
+<p style="margin: 0; padding: 0 56px 24px 0; color: #BDBDBD; font-size: 16px">{{f.a}}</p>
+</div>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section style="max-width: 1240px; margin: 0 auto; padding: 128px 24px">
+<div class="gs-cta" style="position: relative; overflow: hidden; border-radius: 28px; background: #161616; border: 1px solid #333333; padding: 88px 40px; display: flex; flex-direction: column; align-items: center; gap: 24px; text-align: center">
+<div aria-hidden="true" class="gs-glow" style="position: absolute; width: 520px; height: 520px; left: 50%; top: 50%; margin: -260px 0 0 -260px; border-radius: 50%; background: radial-gradient(circle, #FFFFFF 0%, transparent 62%); opacity: 0.12; filter: blur(30px)"></div>
+<h2 class="gs-title" style="position: relative; margin: 0; font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: clamp(48px, 6.6vw, 96px); line-height: 0.92; text-transform: uppercase">La ciudad te está esperando</h2>
+<p style="position: relative; margin: 0; font-size: 19px; color: #BDBDBD; max-width: 560px">Únete a Willow Community y empieza a escribir tu propia historia hoy mismo.</p>
+<a href="https://discord.gg/pdurk6peBH" target="_blank" rel="noopener" class="gs-magnet" style="position: relative; display: inline-flex; align-items: center; gap: 10px; background: #FFFFFF; color: #0A0A0A; text-decoration: none; font-weight: 700; font-size: 18px; padding: 19px 34px; border-radius: 999px">Únete al Discord</a>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer style="border-top: 1px solid #222222">
+<div style="max-width: 1240px; margin: 0 auto; padding: 40px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; font-size: 14px; color: #959595">
+<div style="display: flex; align-items: center; gap: 10px">
+<img src="assets/img/logo-w-small.png" alt="" style="width: 28px; height: auto">
+<span style="font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: 0.04em; text-transform: uppercase; color: #EDEDED">Willow Community</span>
+</div>
+<p style="margin: 0">© 2026 Willow Community. Servidor no afiliado a Rockstar Games ni Take-Two Interactive.</p>
+<div style="display: flex; gap: 20px">
+<a href="https://discord.gg/pdurk6peBH" target="_blank" rel="noopener" class="gs-navlink" style="color: #C8C8C8; text-decoration: none; padding: 10px 0">Discord</a>
+<a href="#normas" class="gs-navlink" style="color: #C8C8C8; text-decoration: none; padding: 10px 0">Normativas</a>
+<a href="#faq" class="gs-navlink" style="color: #C8C8C8; text-decoration: none; padding: 10px 0">FAQ</a>
+</div>
+</div>
+</footer>
+
+</div>
+</template>
+<script src="assets/js/gsap.min.js"></script>
+<script src="assets/js/ScrollTrigger.min.js"></script>
+<script src="assets/js/SplitText.min.js"></script>
+<script src="assets/js/willow-runtime.js"></script>
+<script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { open: 0, copied: false, normTab: 'general', chap: 0, donCat: 'talleres', donImg: {} };
+    this._listeners = [];
+    this._splits = [];
+    this._dead = false;
+  }
+
+  componentDidMount() {
+    if (this.props.animations === false) return;
+    var gsap = window.gsap, ST = window.ScrollTrigger, Split = window.SplitText;
+    var root = document.getElementById('willow-root');
+    if (!gsap || !ST || !root) return;
+    gsap.registerPlugin(ST);
+    if (Split) gsap.registerPlugin(Split);
+    var self = this;
+    var q = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var on = function (el, type, fn) { el.addEventListener(type, fn); self._listeners.push([el, type, fn]); };
+
+    this._mm = gsap.matchMedia();
+    this._mm.add('(prefers-reduced-motion: no-preference)', function (ctx) {
+
+      // INTRO: el logo W se convierte en ventana al mapa y la cámara vuela dentro
+      var win = q('.in-window')[0];
+      gsap.set(q('.in-title'), { autoAlpha: 1 });
+      gsap.set(q('.in-word'), { yPercent: 115 });
+      gsap.set(q('.in-sub'), { autoAlpha: 0, y: 20 });
+      var intro = gsap.timeline({
+        defaults: { ease: 'none' },
+        scrollTrigger: { trigger: '#intro', start: 'top top', end: '+=3600', scrub: 1, pin: true, anticipatePin: 1 }
+      });
+      // 1) La W se abre como una ventana a la ciudad
+      intro.to(q('.in-hint'), { autoAlpha: 0, y: 20, duration: 0.05 }, 0)
+        .to(q('.in-logo'), { scale: 2.2, duration: 0.26, ease: 'power2.in' }, 0)
+        .to(q('.in-logo'), { autoAlpha: 0, duration: 0.1 }, 0.05)
+        .fromTo(win, { maskSize: 'auto 42%', webkitMaskSize: 'auto 42%' }, { maskSize: 'auto 6000%', webkitMaskSize: 'auto 6000%', duration: 0.36, ease: 'power3.in' }, 0)
+        .to(q('.in-dim'), { opacity: 0, duration: 0.25 }, 0.18)
+        .to(q('.in-cloud-l'), { xPercent: -70, yPercent: -10, scale: 1.4, autoAlpha: 0, duration: 0.34 }, 0.06)
+        .to(q('.in-cloud-r'), { xPercent: 70, yPercent: 10, scale: 1.4, autoAlpha: 0, duration: 0.34 }, 0.06)
+        .fromTo(q('.in-cloud-c'), { autoAlpha: 0, yPercent: 30 }, { autoAlpha: 0.75, yPercent: -10, duration: 0.14 }, 0.16)
+        .to(q('.in-cloud-c'), { autoAlpha: 0, yPercent: -60, scale: 1.6, duration: 0.16 }, 0.3)
+      // 2) Vista de la ciudad: la cámara se acerca a la torre
+        .fromTo(q('.in-s1'), { scale: 1.35 }, { scale: 1, duration: 0.36, ease: 'power2.out' }, 0)
+        .to(q('.in-s1'), { scale: 2.1, duration: 0.18, ease: 'power1.in' }, 0.38)
+        .fromTo(q('.in-s2'), { autoAlpha: 0, scale: 1 }, { autoAlpha: 1, duration: 0.06 }, 0.5)
+      // 3) Más cerca: hacia una planta iluminada
+        .to(q('.in-s2'), { scale: 3, duration: 0.16, ease: 'power2.in' }, 0.54)
+        .fromTo(q('.in-s3'), { autoAlpha: 0, scale: 1.25, filter: 'blur(8px)' }, { autoAlpha: 1, scale: 1, filter: 'blur(0px)', duration: 0.08, ease: 'power2.out' }, 0.66)
+      // 4) Entramos por la ventana
+        .to(q('.in-s3'), { scale: 4.5, duration: 0.14, ease: 'power3.in' }, 0.74)
+        .to(q('.in-flash'), { opacity: 0.9, duration: 0.04 }, 0.84)
+        .set(q('.in-s4'), { autoAlpha: 1 }, 0.88)
+        .fromTo(q('.in-s4'), { scale: 1.3 }, { scale: 1.05, duration: 0.12, ease: 'power2.out' }, 0.88)
+        .to(q('.in-flash'), { opacity: 0, duration: 0.05 }, 0.88)
+        .to(q('.in-dim'), { opacity: 1, duration: 0.06 }, 0.9)
+      // 5) Dentro del piso: aparece el título
+        .to(q('.in-word'), { yPercent: 0, duration: 0.06, stagger: 0.025, ease: 'power3.out' }, 0.91)
+        .to(q('.in-sub'), { autoAlpha: 1, y: 0, duration: 0.04, ease: 'power2.out' }, 0.96);
+
+      // Entrada al cargar
+      gsap.from(q('.in-logo'), { scale: 0.6, autoAlpha: 0, filter: 'blur(20px)', duration: 1.6, ease: 'expo.out', clearProps: 'filter' });
+      gsap.from(q('.in-cloud-l'), { xPercent: -25, autoAlpha: 0, duration: 2.2, ease: 'power3.out' });
+      gsap.from(q('.in-cloud-r'), { xPercent: 25, autoAlpha: 0, duration: 2.2, ease: 'power3.out' });
+      gsap.from(q('.in-hint'), { autoAlpha: 0, y: 20, duration: 1, delay: 1 });
+      gsap.to(q('.in-chev'), { y: 6, duration: 0.9, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+      gsap.to(q('.in-cloud-l, .in-cloud-r').length ? q('.in-cloud-l') : [], { y: -14, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+
+      // Barra de progreso de scroll
+      gsap.to(q('.gs-progress'), { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: 0.3 } });
+
+      // Nav compacta al bajar
+      gsap.to(q('.gs-nav'), { paddingTop: 10, paddingBottom: 10, ease: 'none', scrollTrigger: { start: 0, end: 240, scrub: true } });
+
+      // Entrada del hero
+      var tl = gsap.timeline({ defaults: { ease: 'power4.out' }, scrollTrigger: { trigger: '#inicio', start: 'top 80%' } });
+      tl.from(q('.gs-hero-word'), { yPercent: 115, rotate: 4, duration: 1.2, stagger: 0.09 })
+        .from(q('.gs-hero-fade'), { y: 32, autoAlpha: 0, duration: 1, stagger: 0.12 }, '-=0.85')
+        .fromTo(q('.gs-hero-shot'), { clipPath: 'inset(100% 0% 0% 0% round 20px)', scale: 1.06 }, { clipPath: 'inset(0% 0% 0% 0% round 20px)', scale: 1, duration: 1.4, ease: 'expo.out' }, '-=1.1')
+        .from(q('.gs-hero-chip'), { y: 24, autoAlpha: 0, duration: 0.8, stagger: 0.1 }, '-=0.9')
+        .from(q('.gs-leaf'), { scale: 0, autoAlpha: 0, duration: 1.2, stagger: 0.08, ease: 'back.out(2)' }, '-=1.2');
+
+      // Punto "en vivo"
+      gsap.to(q('.gs-pulse'), { scale: 2.6, autoAlpha: 0, duration: 1.6, repeat: -1, ease: 'power2.out' });
+
+      // Hojas flotando
+      q('.gs-leaf').forEach(function (el, i) {
+        gsap.to(el, { x: 'random(-40, 40)', y: 'random(-50, 50)', rotation: 'random(-40, 40)', duration: 'random(4, 7)', repeat: -1, yoyo: true, ease: 'sine.inOut', delay: i * 0.25 });
+      });
+
+      // Brillo que respira
+      gsap.to(q('.gs-glow'), { xPercent: 12, yPercent: 10, scale: 1.18, duration: 7, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+
+      // Parallax del hero
+      gsap.to(q('.gs-hero-media'), { yPercent: 14, ease: 'none', scrollTrigger: { trigger: '#inicio', start: 'top top', end: 'bottom top', scrub: true } });
+
+      // Cintas infinitas que aceleran con el scroll
+      var loops = [];
+      q('.gs-marquee').forEach(function (el) { loops.push(gsap.to(el, { xPercent: -50, duration: 28, ease: 'none', repeat: -1 })); });
+      q('.gs-marquee-rev').forEach(function (el) { loops.push(gsap.fromTo(el, { xPercent: -50 }, { xPercent: 0, duration: 34, ease: 'none', repeat: -1 })); });
+      ST.create({
+        start: 0, end: 'max',
+        onUpdate: function (s) {
+          var boost = 1 + Math.min(Math.abs(s.getVelocity()) / 250, 6);
+          loops.forEach(function (t) {
+            t.timeScale(boost);
+            gsap.to(t, { timeScale: 1, duration: 1.2, ease: 'power2.out', overwrite: true });
+          });
+        }
+      });
+
+      // Textos que aparecen al hacer scroll
+      q('.gs-reveal').forEach(function (el) {
+        gsap.from(el, { y: 36, autoAlpha: 0, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
+      });
+
+      // Barras de "Sobre nosotros"
+      gsap.from(q('.gs-bar'), { scaleX: 0, duration: 1.2, stagger: 0.12, ease: 'power3.inOut', scrollTrigger: { trigger: q('.gs-bar')[0], start: 'top 88%' } });
+
+      // Tarjetas en cascada
+      gsap.set(q('.gs-card'), { y: 60, autoAlpha: 0 });
+      ST.batch(q('.gs-card'), {
+        start: 'top 90%',
+        onEnter: function (batch) { gsap.to(batch, { y: 0, autoAlpha: 1, duration: 1, stagger: 0.1, ease: 'power3.out', overwrite: 'auto' }); }
+      });
+
+      // Normas y FAQ deslizando
+      gsap.set(q('.gs-rule'), { x: -30, autoAlpha: 0 });
+      ST.batch(q('.gs-rule'), {
+        start: 'top 92%',
+        onEnter: function (batch) { gsap.to(batch, { x: 0, autoAlpha: 1, duration: 0.8, stagger: 0.06, ease: 'power3.out' }); }
+      });
+
+      // Línea de progreso de los pasos
+      gsap.fromTo(q('.gs-step-line'), { scaleX: 0 }, { scaleX: 1, ease: 'none', scrollTrigger: { trigger: '.gs-steps', start: 'top 70%', end: 'center center', scrub: 0.6 } });
+
+      // Galería con revelado tipo cortina
+      gsap.set(q('.gs-shot'), { clipPath: 'inset(0% 0% 100% 0% round 16px)' });
+      ST.batch(q('.gs-shot'), {
+        start: 'top 90%',
+        onEnter: function (batch) { gsap.to(batch, { clipPath: 'inset(0% 0% 0% 0% round 16px)', duration: 1.2, stagger: 0.1, ease: 'expo.out' }); }
+      });
+
+      // CTA que crece
+      gsap.fromTo(q('.gs-cta'), { scale: 0.9, autoAlpha: 0.4 }, { scale: 1, autoAlpha: 1, ease: 'none', scrollTrigger: { trigger: q('.gs-cta')[0], start: 'top 95%', end: 'top 45%', scrub: 0.6 } });
+
+      // Inclinación 3D en tarjetas
+      if (window.matchMedia('(hover: hover)').matches) {
+        q('.gs-tilt').forEach(function (card) {
+          gsap.set(card, { transformPerspective: 900 });
+          var rx = gsap.quickTo(card, 'rotationX', { duration: 0.6, ease: 'power3' });
+          var ry = gsap.quickTo(card, 'rotationY', { duration: 0.6, ease: 'power3' });
+          on(card, 'mousemove', function (e) {
+            var r = card.getBoundingClientRect();
+            ry(((e.clientX - r.left) / r.width - 0.5) * 10);
+            rx(-((e.clientY - r.top) / r.height - 0.5) * 10);
+          });
+          on(card, 'mouseleave', function () { rx(0); ry(0); });
+        });
+
+        // Botones magnéticos
+        q('.gs-magnet').forEach(function (btn) {
+          var mx = gsap.quickTo(btn, 'x', { duration: 0.5, ease: 'elastic.out(1, 0.4)' });
+          var my = gsap.quickTo(btn, 'y', { duration: 0.5, ease: 'elastic.out(1, 0.4)' });
+          on(btn, 'mousemove', function (e) {
+            var r = btn.getBoundingClientRect();
+            mx((e.clientX - r.left - r.width / 2) * 0.3);
+            my((e.clientY - r.top - r.height / 2) * 0.4);
+          });
+          on(btn, 'mouseleave', function () { mx(0); my(0); });
+        });
+      }
+
+      // Titulares con SplitText (cuando cargan las fuentes)
+      var splitTitles = function () {
+        if (self._dead || !Split) return;
+        ctx.add(function () {
+          q('.gs-title').forEach(function (h) {
+            var s = Split.create(h, { type: 'lines', mask: 'lines', linesClass: 'gs-line' });
+            self._splits.push(s);
+            gsap.from(s.lines, { yPercent: 110, duration: 1.1, stagger: 0.1, ease: 'power4.out', scrollTrigger: { trigger: h, start: 'top 88%' } });
+          });
+          ST.refresh();
+        });
+      };
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(splitTitles); else splitTitles();
+    });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    var gsap = window.gsap, ST = window.ScrollTrigger;
+    var root = document.getElementById('willow-root');
+    if (prevState && root && (prevState.chap !== this.state.chap)) {
+      var body = root.querySelector('.bk-body');
+      if (body) body.scrollTop = 0;
+    }
+    if (!gsap || !ST || this.props.animations === false) return;
+    if (prevState && root) {
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduce && prevState.chap !== this.state.chap && !!this.state.normTab && this.state.normTab !== 'ems' && this.state.normTab !== 'meca') {
+        var fwd = this.state.chap > prevState.chap;
+        gsap.fromTo(root.querySelector('.bk-page'), { rotateY: fwd ? -75 : 35, autoAlpha: 0.2, transformOrigin: 'left center' }, { rotateY: 0, autoAlpha: 1, duration: 0.7, ease: 'power3.out', clearProps: 'transform' });
+      }
+      if (!reduce && prevState.normTab !== this.state.normTab && !!this.state.normTab && this.state.normTab !== 'ems' && this.state.normTab !== 'meca') {
+        gsap.fromTo(root.querySelector('.bk'), { y: 40, rotateX: 8, autoAlpha: 0, transformPerspective: 1600 }, { y: 0, rotateX: 0, autoAlpha: 1, duration: 0.8, ease: 'power3.out', clearProps: 'transform' });
+      }
+      if (prevState.normTab !== this.state.normTab || prevState.chap !== this.state.chap) { ST.refresh(); return; }
+    }
+    if (prevState && prevState.open !== this.state.open && this.state.open !== -1) {
+      var root = document.getElementById('willow-root');
+      var a = root && root.querySelector('.gs-faq-a');
+      if (a) gsap.from(a, { height: 0, autoAlpha: 0, duration: 0.5, ease: 'power3.out', onComplete: function () { ST.refresh(); } });
+    } else {
+      ST.refresh();
+    }
+  }
+
+  componentWillUnmount() {
+    this._dead = true;
+    clearTimeout(this._copyTimer);
+    this._listeners.forEach(function (l) { l[0].removeEventListener(l[1], l[2]); });
+    this._listeners = [];
+    this._splits.forEach(function (s) { try { s.revert(); } catch (e) {} });
+    this._splits = [];
+    if (this._mm) this._mm.revert();
+  }
+
+  renderVals() {
+    var accent = this.props.accent ?? '#FFFFFF';
+    var rules = [
+      { n: '01', title: 'Respeta el rol ajeno', text: 'Trata a los demás jugadores con respeto dentro y fuera del personaje.' },
+      { n: '02', title: 'Nada de metagaming', text: 'No uses en el juego información obtenida fuera de él (Discord, streams, etc.).' },
+      { n: '03', title: 'Nada de powergaming', text: 'No fuerces acciones imposibles ni impongas tu rol sin dar opción de respuesta.' },
+      { n: '04', title: 'Prohibido RDM y VDM', text: 'No agredas ni atropelles a otros sin un motivo de rol justificado.' },
+      { n: '05', title: 'Valora tu vida', text: 'Actúa con miedo real ante situaciones de peligro, como lo haría una persona de verdad.' },
+      { n: '06', title: 'Mantén el personaje', text: 'Evita salir de rol en el juego. Para dudas, usa los canales de soporte.' },
+      { n: '07', title: 'Sin trampas ni bugs', text: 'Usar programas externos o aprovechar fallos supone sanción inmediata.' },
+      { n: '08', title: 'Escucha al staff', text: 'Las decisiones del staff se respetan. Si no estás de acuerdo, abre un ticket.' }
+    ];
+    var data = [
+      { q: '¿Cómo me conecto al servidor?', a: 'Abre FiveM y busca Willow Community en la lista de servidores, o pulsa F8 y escribe connect cfx.re/join/9vqaoe. También puedes abrir cfx.re/join/9vqaoe en el navegador. Antes, únete a nuestro Discord.' },
+      { q: '¿Necesito whitelist para jugar?', a: 'Sí. Willow Community funciona con whitelist para mantener un rol de calidad. Únete al Discord y sigue los pasos del canal de whitelist para solicitar tu acceso.' },
+      { q: '¿Necesito micrófono?', a: 'Sí. El rol por voz es la base del servidor, así que necesitas un micrófono que funcione bien.' },
+      { q: '¿Qué edad mínima hay?', a: 'La edad mínima para jugar en Willow Community es de 16 años.' },
+      { q: '¿Cómo entro en una facción?', a: 'Las solicitudes para facciones se hacen desde su canal en Discord. Cada una tiene sus requisitos y proceso de selección.' },
+      { q: 'He tenido un problema, ¿qué hago?', a: 'Abre un ticket en el canal de soporte del Discord y un miembro del staff te atenderá lo antes posible.' }
+    ];
+    var self = this;
+    var faqs = data.map(function (d, i) {
+      var isOpen = self.state.open === i;
+      return {
+        q: d.q, a: d.a, open: isOpen, expanded: isOpen ? 'true' : 'false', rot: isOpen ? 45 : 0,
+        toggle: function () { self.setState({ open: isOpen ? -1 : i }); }
+      };
+    });
+    var copy = function () {
+      var text = 'connect cfx.re/join/9vqaoe';
+      var done = function () {
+        self.setState({ copied: true });
+        clearTimeout(self._copyTimer);
+        self._copyTimer = setTimeout(function () { self.setState({ copied: false }); }, 2000);
+      };
+      try {
+        var fallback = function () { var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { if (document.execCommand('copy')) done(); } catch (e2) {} document.body.removeChild(ta); };
+        if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) { navigator.clipboard.writeText(text).then(done, fallback); } else { fallback(); }
+      } catch (e) {}
+    };
+    var LSPD = [
+      { title: 'Ingreso en el cuerpo', blocks: [
+        { t: 'p', text: 'Las personas interesadas en unirse a la policía deberán completar los siguientes pasos.' },
+        { t: 'h', text: '1. Requisitos básicos' },
+        { t: 'ul', items: [
+          'Tener 16 años cumplidos como mínimo.',
+          'No haber recibido sanciones administrativas en las últimas dos semanas.',
+          'No tener antecedentes penales graves.',
+          'No pertenecer a ningún grupo criminal.',
+          'Mantener una presentación personal adecuada y un nombre acorde a la responsabilidad policial.',
+          'Tener las licencias necesarias para conducir y portar armas.',
+          'Haber realizado y aprobado un examen psicotécnico.'
+        ] },
+        { t: 'h', text: '2. Presentación de la candidatura' },
+        { t: 'p', text: 'Los interesados deberán rellenar el formulario de inscripción disponible en el portal oficial de la LSPD.' },
+        { t: 'h', text: '3. Prueba teórica' },
+        { t: 'p', text: 'Los aspirantes realizarán una evaluación teórica que consiste en un cuestionario oral. Para aprobar se necesitan al menos 5 respuestas correctas de un total de 10 preguntas.' },
+        { t: 'h', text: '4. Prueba práctica' },
+        { t: 'p', text: 'Los candidatos deberán demostrar sus habilidades en las siguientes pruebas:' },
+        { t: 'ul', items: ['Ejercicio de persecución y coordinación.', 'Simulación de procesamiento de detenidos.'] },
+        { t: 'note', text: 'Solo quienes superen todas las etapas serán admitidos en el cuerpo policial.' }
+      ] },
+      { title: 'Rangos y equipamiento', blocks: [
+        { t: 'h', text: 'Rangos (de mayor a menor)' },
+        { t: 'ranks', items: ['Jefe de la LSPD', 'Jefe adjunto', 'Subjefe', 'Comandante', 'Capitán II', 'Capitán I', 'Teniente II', 'Teniente I', 'Sargento II', 'Sargento I', 'Inspector', 'Oficial III', 'Oficial II', 'Oficial I', 'Cadete'] },
+        { t: 'h', text: 'Equipamiento básico (todos los rangos)' },
+        { t: 'chips', items: ['Pistola reglamentaria', 'Táser', 'Porra', 'Linterna'] },
+        { t: 'p', text: 'Solo se podrán usar armas de mayor calibre con permiso de un rango superior, y siempre de acuerdo con el nivel DEFCON vigente.' },
+        { t: 'p', text: 'Al salir de servicio se deberá dejar todo el material reglamentario, salvo los rangos altos o quien tenga un permiso de Jefatura.' }
+      ] },
+      { title: 'Código interno', blocks: [
+        { t: 'kv', items: [
+          { k: 'Art. 1', v: 'Todos los policías deberán identificarse con su número de placa ante cualquier ciudadano que lo solicite.' },
+          { k: 'Art. 2', v: 'Queda prohibido realizar acciones ilegales, trabajar para mafias o bandas, dar chivatazos o aceptar sobornos. Quien lo haga será expulsado de inmediato y condenado a cadena perpetua por corrupción.' },
+          { k: 'Art. 3', v: 'Un agente tiene pleno derecho a pedir a cualquier persona que se identifique y, si resulta sospechosa, a cachearla.' },
+          { k: 'Art. 4', v: 'Si un civil desarmado se niega a ser arrestado, nunca se podrán usar armas de fuego contra él. Solo se podrán usar la porra o el táser.' },
+          { k: 'Art. 5', v: 'Ante una falta de respeto de un civil se le darán 3 avisos. Si persiste, se le detendrá y se le leerán sus derechos. Si usa la violencia, se podrá usar el táser para defenderse, sin poner nunca en peligro su integridad física ni psíquica.' },
+          { k: 'Art. 6', v: 'Queda prohibido desobedecer una orden de un superior, siempre que no implique incumplir una normativa de la ciudad o de la policía.' },
+          { k: 'Art. 7', v: 'No está permitido prestar el vehículo o el material policial a otros compañeros sin justificación.' },
+          { k: 'Art. 8', v: 'El uso de armas solo está permitido cuando la otra parte ya ha abierto el rol.' },
+          { k: 'Art. 9', v: 'Ser policía no da derecho a saltarse las normas de tráfico. Solo se podrá hacer en una urgencia o durante un robo.' },
+          { k: 'Art. 10', v: 'Las puertas de la entrada de comisaría estarán abiertas salvo en máxima alerta o para echar a alguien que intente forzar roles absurdos o agresivos. Todas las puertas del interior de comisaría estarán siempre cerradas.' },
+          { k: 'Art. 11', v: 'Está prohibido llevar a amigos o conocidos en coches oficiales sin una razón justificada.' },
+          { k: 'Art. 12', v: 'Si una persona apunta a otra a corta distancia, se usará el táser. Si la distancia es larga, se podrá usar el arma letal reglamentaria para salvar la vida de la otra persona.' },
+          { k: 'Art. 13', v: 'Fuera de servicio no se podrá portar ningún tipo de armamento policial (solo autorizados los jefes de facción).' },
+          { k: 'Art. 14', v: 'Al detener a una persona es obligatorio leerle sus derechos.' },
+          { k: 'Art. 15', v: 'Antes de entrar de servicio se deberá entrar en la radio de la policía.' },
+          { k: 'Art. 16', v: 'Solo son legales las armas recogidas en el código penal.' },
+          { k: 'Art. 17', v: 'Quien salga de la policía, por expulsión o por decisión propia, deberá entregar obligatoriamente sus armas a un alto cargo. Después se le aplicará un PKT administrativo.' },
+          { k: 'Art. 18', v: 'Está totalmente prohibido quedarse AFK estando de servicio. Conlleva una sanción interna.' },
+          { k: 'Art. 19', v: 'Está totalmente prohibido abandonar vehículos oficiales. Siempre se deberá llamar al mecánico y, si no hay ninguno, rolear la llamada a una grúa para incautarlo.' },
+          { k: 'Art. 20', v: 'Solo se podrá ir de paisano (secreta) cuando lo ordene el superior al mando y únicamente los agentes a los que se lo ordene.' },
+          { k: 'Art. 21', v: 'Se harán revisiones periódicas de taquillas y vehículos para comprobar que nadie es corrupto ni guarda armas en su casa o en sus vehículos.' },
+          { k: 'Art. 22', v: 'Cada policía deberá estar de servicio un mínimo de 8 horas semanales (salvo excepciones puntuales).' },
+          { k: 'Art. 23', v: 'Un cadete nunca podrá patrullar solo. Siempre deberá ir acompañado de un superior.' },
+          { k: 'Art. 24', v: 'Es obligatorio atender robos y atracos, salvo que se esté atendiendo algo más importante.' }
+        ] }
+      ] },
+      { title: 'Servicio y patrullaje', blocks: [
+        { t: 'h', text: 'Al entrar de servicio' },
+        { t: 'ol', items: ['Ponte de servicio en la tablet.', 'Comunica un 10.8 por radio y entra en el canal «Esperando asignación».', 'Un superior te asignará tu frecuencia.'] },
+        { t: 'h', text: 'Patrullaje' },
+        { t: 'ul', items: [
+          'Hay que estar siempre en la radio.',
+          'Se patrulla con calma, a velocidad moderada, respetando las normas de tráfico y los 3 segundos en los semáforos.',
+          'Si algo supone un peligro para la patrulla, se piden refuerzos.',
+          'Siempre se actúa con coherencia y sentido común.'
+        ] },
+        { t: 'h', text: 'Apoyo y QRR' },
+        { t: 'kv', items: [
+          { k: 'Apoyo', v: 'Petición de refuerzos en una ubicación. Al llegar se toman precauciones, pero no se abate a nadie. Ejemplo: «Adam-10 necesita apoyo en el casino, hay 5 borrachos peleando».' },
+          { k: 'QRR', v: 'Petición de apoyo urgente por peligro inminente. Siempre debe ir acompañada de la ubicación y, si es posible, del número de tiradores y la dirección del fuego. Solo se usa en caso de secuestro.' }
+        ] }
+      ] },
+      { title: 'Arrestos y detenciones', blocks: [
+        { t: 'h', text: 'Cómo actuar en un arresto' },
+        { t: 'ol', items: [
+          'Se apunta al sospechoso con un arma (táser, pistola…) y se le esposa.',
+          'Se le mete en el coche patrulla y se le lleva a comisaría.',
+          'Antes de entrar se le leen sus derechos. Si dice que no los ha entendido, se le vuelven a leer un máximo de 2 veces.',
+          'Se le quitan las esposas mirando a la pared, se le apunta para que levante las manos y se le cachea para retirarle todo lo ilícito.',
+          'Una vez cacheado, se le quita la máscara y se procede a su procesamiento.'
+        ] },
+        { t: 'h', text: 'Sospechoso huyendo a pie' },
+        { t: 'p', text: 'Si un civil huye a pie sin haber disparado, se le ordenará en voz alta y clara que se detenga. Si no se para, se usará el táser. Nunca se podrá disparar con arma letal salvo que el sospechoso saque un arma.' },
+        { t: 'h', text: 'Sospechoso huyendo en coche' },
+        { t: 'ol', items: [
+          'Durante la persecución se mantiene una distancia de seguridad para proteger la vida de ambas partes.',
+          'Se dan tres advertencias al sospechoso. Si no se detiene, se aplica el código 100.',
+          'Si sigue sin detenerse, se realiza la maniobra PIT para que pierda el control ligeramente y reduzca la velocidad, valorando siempre los riesgos.',
+          'Si nada de esto funciona, se podrá disparar a las ruedas para pincharlas.',
+          'Con el vehículo inmovilizado, se acorrala al sospechoso, se usa el táser si es necesario y se le esposa.'
+        ] },
+        { t: 'h', text: 'Sospechoso huyendo en moto' },
+        { t: 'p', text: 'Las motos son más delicadas que los coches, porque cualquier maniobra puede poner en riesgo la vida del sospechoso. Primero se le seguirá e intentará cerrarle el paso para obligarle a parar, y se avisará a otra patrulla para que se una a la persecución.' },
+        { t: 'p', text: 'Durante toda la persecución hay que informar por radio de la ubicación y de todo lo que ocurra. Se darán tres advertencias y, si no se detiene, se aplicará el código 100. Si aun así no para, se podrá disparar a las ruedas. Con la moto inmovilizada, se acorrala al sospechoso, se le apunta con el táser si es necesario y se le esposa.' },
+        { t: 'h', text: 'Común a todas las detenciones' },
+        { t: 'note', text: 'Tras el arresto se le dirá al detenido el motivo de su detención y se le leerán sus derechos antes de entrar en comisaría por la puerta trasera. Si no se le leen los derechos, no podrá cumplir condena y quedará libre sin cargos.' }
+      ] },
+      { title: 'Procesamiento y derechos', blocks: [
+        { t: 'h', text: 'Cómo procesar a un detenido' },
+        { t: 'p', text: 'Con el sujeto ya cacheado en comisaría, se le procesa de la siguiente manera:' },
+        { t: 'ol', items: [
+          'Se le lleva a una de las 2 salas de identificación, se le pide el pasaporte y se le hace una foto.',
+          'Se le ponen las multas correspondientes con la PDA. Si las paga, la condena se reduce a la mitad.',
+          'Si no las paga y la condena no supera los 15 meses, cumplirá en las celdas de comisaría. Si los supera, se le trasladará a la prisión federal.'
+        ] },
+        { t: 'h', text: 'Derechos del detenido' },
+        { t: 'kv', items: [
+          { k: 'a)', v: 'Tiene derecho a permanecer en silencio. Todo lo que diga podrá ser utilizado en su contra.' },
+          { k: 'b)', v: 'Tiene derecho a comida y bebida.' },
+          { k: 'c)', v: 'Tiene derecho a asistencia médica.' },
+          { k: 'd)', v: 'Tiene derecho a conocer el motivo de su detención.' },
+          { k: 'e)', v: 'Tiene derecho a una llamada de menos de 1 minuto, siempre en presencia de un agente.' },
+          { k: 'f)', v: 'Tiene derecho a un abogado. Si no tiene, se le asignará uno de oficio.' }
+        ] },
+        { t: 'note', text: 'Si no se le leen sus derechos, el detenido puede solicitar el «habeas corpus»: un procedimiento por el que comparece de inmediato ante el juez, que puede dejarle en libertad al no haber motivos de peso para condenarle.' },
+        { t: 'h', text: 'Prisión federal' },
+        { t: 'p', text: 'Se ingresará en la prisión federal en los siguientes casos:' },
+        { t: 'ul', items: [
+          'Multas impagadas por más de 150.000 $ (con opción a pago).',
+          'Detención en una redada contra una organización criminal.',
+          'Multas pagadas acumuladas por más de 750.000 $.',
+          'Suponer un peligro para una investigación.',
+          'Corrupción en una facción pública.'
+        ] }
+      ] },
+      { title: 'Robos y negociaciones', blocks: [
+        { t: 'h', text: 'Cómo actuar en un robo' },
+        { t: 'ol', items: [
+          'Se pide el código Charlie por radio.',
+          'Se avisa por /SAPD de que está prohibido pasar por la zona del atraco.',
+          'Mientras el negociador habla con los atracadores, de 1 a 3 policías hacen perímetro buscando tiradores.',
+          'Tras la negociación, si hay huida comienza la persecución. Si hay tiroteo, se cuentan 10 segundos antes de empezar.'
+        ] },
+        { t: 'h', text: 'Atracos' },
+        { t: 'p', text: 'Siempre que sea posible se buscará la negociación, intentando que no haya víctimas en ningún bando y asegurando el estado de salud de los rehenes. Las negociaciones deben estar supervisadas y autorizadas por el mando.' },
+        { t: 'ul', items: [
+          'Los sospechosos solo podrán negociar lo necesario para su huida, sin peticiones desmedidas.',
+          'Nunca se entra en el establecimiento, salvo que el atracador lo pida. En ese caso entra el negociador, que será intocable.',
+          'Las negociaciones serán serias: sin burlas, bromas ni tonos inapropiados.'
+        ] },
+        { t: 'h', text: 'Negociaciones por dinero' },
+        { t: 'p', text: 'Robos sin rehenes: no se negocia por dinero ni por porcentaje. Se pide a los atracadores que se rindan y salgan con las manos en alto. Si se niegan, se avisa al SWAT para que intervenga.' },
+        { t: 'kv', items: [
+          { k: 'Robo con rehenes', v: 'De 5.000 $ a 10.000 $ por rehén.' },
+          { k: 'Secuestro de civiles', v: 'Hasta 30.000 $ por rehén.' },
+          { k: 'Secuestro de empresarios', v: 'De 20.000 $ a 40.000 $ por rehén.' },
+          { k: 'Secuestro de policías', v: 'De 40.000 $ a 80.000 $ por rehén, según el rango.' },
+          { k: 'Secuestro del alcalde', v: 'De 40.000 $ a 65.000 $.' }
+        ] },
+        { t: 'h', text: 'Negociaciones prohibidas' },
+        { t: 'chips', items: ['Intercambio de rehenes', 'Intercambio de armas', 'Cambiar el nivel de alerta', 'Reducir el número de policías', 'Superar el límite de rehenes'] },
+        { t: 'h', text: 'Armas según el atraco' },
+        { t: 'p', text: 'El mando decide en cada momento las armas que se usan:' },
+        { t: 'kv', items: [
+          { k: 'Tiendas', v: 'Chaleco antibalas y solo pistola.' },
+          { k: 'Joyería y sucursales', v: 'Chaleco antibalas, pistolas y subfusiles.' },
+          { k: 'Banco Central', v: 'Chaleco antibalas y todo tipo de armas.' }
+        ] }
+      ] },
+      { title: 'Niveles de alerta (DEFCON)', blocks: [
+        { t: 'p', text: 'El DEFCON (Defense Readiness Condition) mide el nivel de preparación y defensa de la policía. Se ajusta según el nivel de criminalidad de la ciudad.' },
+        { t: 'h', text: 'DEFCON 5' },
+        { t: 'p', text: 'Amenaza leve: posibles altercados y enfrentamientos menores.' },
+        { t: 'chips', items: ['Chaleco antibalas', 'Porra', 'Táser', 'Pistola reglamentaria', 'Munición'] },
+        { t: 'h', text: 'DEFCON 4' },
+        { t: 'p', text: 'Amenaza presente con riesgo real para la seguridad. Arma letal desenfundada.' },
+        { t: 'chips', items: ['Chaleco antibalas', 'Porra', 'Táser', 'Pistola reglamentaria', 'Munición'] },
+        { t: 'h', text: 'DEFCON 3' },
+        { t: 'p', text: 'Amenazas y enfrentamientos constantes. Arma letal siempre desenfundada (salvo en negociaciones).' },
+        { t: 'chips', items: ['1 subfusil por patrulla', 'Chaleco antibalas', 'Pistola reglamentaria', 'Táser', 'Porra', 'Munición'] },
+        { t: 'h', text: 'DEFCON 2' },
+        { t: 'p', text: 'Amenaza grave y policías en riesgo. Se activa con un robo mediano. Se refuerza la seguridad en infraestructuras públicas (comisaría, hospital, etc.).' },
+        { t: 'chips', items: ['2 subfusiles por patrulla', 'Chaleco antibalas', 'Pistola reglamentaria', 'Táser', 'Porra', 'Munición'] },
+        { t: 'h', text: 'DEFCON 1' },
+        { t: 'note', text: 'Amenaza muy grave y riesgo inminente para la vida y la seguridad. Se activa la FUDRA, el SWAT toma el control de la ciudad y se pueden restringir zonas, deteniendo a quien esté dentro o se acerque.' }
+      ] },
+      { title: 'Códigos', blocks: [
+        { t: 'h', text: 'Códigos de radio' },
+        { t: 'kv', items: [
+          { k: '10.0', v: 'Precaución' }, { k: '10.4', v: 'Afirmativo' }, { k: '10.5', v: 'Negativo' }, { k: '10.6', v: 'Parada de tráfico' },
+          { k: '10.8', v: 'Entrada de servicio, esperando asignación' }, { k: '10.9', v: 'Repetir mensaje' }, { k: '10.10', v: 'Salida de servicio' },
+          { k: '10.19', v: 'Regreso a comisaría' }, { k: '10.20', v: 'Ubicación' }, { k: '10.26', v: 'Sin novedad' }, { k: '10.37', v: 'Solicito grúa' },
+          { k: '10.38', v: 'Solicito ambulancia' }, { k: '10.88', v: 'Toma de mando' }, { k: '10.95', v: 'Procesamiento de sujeto' }, { k: '10.97', v: 'En camino' }
+        ] },
+        { t: 'h', text: 'Códigos penales' },
+        { t: 'kv', items: [
+          { k: '207', v: 'Secuestro' }, { k: '211', v: 'Alarma de robo' }, { k: '215', v: 'Tiroteo en curso' }, { k: '220', v: 'Robo de vehículo' },
+          { k: '320', v: 'Venta de droga' }, { k: '254-V', v: 'Persecución en vehículo' }, { k: '254-P', v: 'Persecución a pie' }, { k: '487', v: 'Robo mayor' }, { k: '488', v: 'Robo menor' }
+        ] },
+        { t: 'h', text: 'Claves' },
+        { t: 'kv', items: [
+          { k: 'Código 1', v: 'Sin luces ni sirenas' }, { k: 'Código 2', v: 'Con luces y sin sirenas' }, { k: 'Código 3', v: 'Con luces y sirenas' },
+          { k: 'QRR', v: 'Agente en peligro' }, { k: 'Charlie', v: 'Silencio en la radio' }, { k: 'Código 100', v: 'Bloqueo de calle con el vehículo' },
+          { k: 'Robert', v: 'Disparar a las ruedas' }, { k: 'PIT', v: 'Maniobra de desestabilización (golpe al vehículo)' }, { k: '6-Adam', v: 'Solicito patrulla' }
+        ] }
+      ] }
+    ];
+    var GENERAL = [
+      { title: 'Introducción', blocks: [
+        { t: 'p', text: 'Crea un rol para tu personaje, cíñete a él y empieza tu nueva vida en la ciudad. No están permitidos los roles terroristas, acosadores, racistas, machistas ni de contenido +18 sin consentimiento. Evita cualquier rol que pueda ofender OOC a otra persona.' },
+        { t: 'p', text: 'Elige para tu personaje un nombre adecuado, que podría tener una persona real.' },
+        { t: 'p', text: 'Actúa en cada situación como lo harías en la vida real, pero respetando siempre la normativa. Cualquier conducta fuera de lo normal podrá ser sancionada. Evita comportamientos y temas que puedan ofender a otras personas (política, ideología, etc.).' },
+        { t: 'p', text: 'Los administradores se reservan en todo momento el derecho a considerar indebidos ciertos comportamientos aunque no estén recogidos en la normativa. Usad el sentido común.' },
+        { t: 'p', text: 'Está totalmente prohibido regalar o aceptar cantidades de dinero o bienes desproporcionados. Cada uno debe conseguir las cosas con su propio rol.' },
+        { t: 'note', text: 'La normativa evolucionará junto con el servidor, así que conviene leerla periódicamente. Cualquier cambio se comunicará antes por Discord.' }
+      ] },
+      { title: 'Conceptos generales', blocks: [
+        { t: 'kv', items: [
+          { k: 'OOC', v: 'Out of Character. Todo lo que ocurre fuera del personaje, fuera del juego.' },
+          { k: 'IC', v: 'In Character. Lo que le ocurre a tu personaje dentro del rol y que influye en sus decisiones. Algunos canales de Discord son IC y deben rolearse como tu personaje (Instagram, Periódico, Foro de empleo y Venta de coches).' },
+          { k: 'MetaGaming (MG)', v: 'Usar dentro del juego información obtenida fuera de él, a propósito o por error. Está prohibido y se sanciona. Las sospechas que no se expliquen de forma convincente al staff también serán sancionadas.' },
+          { k: 'PowerGaming (PG)', v: 'Hacer cosas que en la vida real no podrían hacerse por no tener lógica o ser imposibles, o forzar el rol de otro jugador sin darle opción a reaccionar. En persecuciones solo se podrá huir por la montaña con vehículos todoterreno y por caminos de tierra.' },
+          { k: 'Ejemplos de PG', v: 'Hablar por radio esposado, meterse en un arbusto para aprovechar la tercera persona o disparar desde él, saltar desde grandes alturas, reconocer a alguien por la voz tras un rol enmascarado, el Ghost Peek (disparar desde ángulos muertos) y hacer volteretas mientras se apunta.' },
+          { k: 'Bad Driving (BD)', v: 'Conducir de forma inapropiada o poco realista. No está permitido salvo en persecuciones y roles agresivos.' },
+          { k: 'Bunny Jump (BJ)', v: 'Saltar para avanzar más rápido. Totalmente prohibido: actúa siempre como en la vida real.' },
+          { k: 'DeathMatch (DM)', v: 'Agredir o matar a otros jugadores sin un motivo previo.' },
+          { k: 'Vehicle DeathMatch (VDM)', v: 'Matar a otro jugador usando un vehículo como arma.' },
+          { k: 'Player Kill (PK)', v: 'Muerte no definitiva del personaje. Olvidas todo lo ocurrido en ese rol y debes actuar según tu estado físico al despertar. Hay que esperar 1 día OOC para volver al rol anterior, roleando una estancia en el hospital.' },
+          { k: 'Player Kill Total (PKT)', v: 'Muerte del personaje sin posibilidad de volver al rol anterior. Olvidas todo lo relacionado con un grupo de personas, pero no pierdes tus bienes. Si sufres un PKT para salir de un grupo, no podrás volver a él. Debe aprobarlo la administración por ticket.' },
+          { k: 'Character Kill (CK)', v: 'Muerte TOTAL del personaje: pierdes todos tus bienes (excepto donaciones) y no puedes volver a usar el mismo nombre. Debes crear un personaje e historia nuevos, sin ninguna relación con el anterior (familiar, amigo o conocido). Lo aprueba antes la administración por ticket en Discord. Está totalmente prohibido pasar bienes (dinero, casas, coches…) del personaje anterior al nuevo o recibir ayuda de amigos de tu vida anterior; ambas partes serían sancionadas.' },
+          { k: 'Revenge Kill (RK)', v: 'Vengarse después de haber sufrido un PK.' },
+          { k: 'Bug Abuse (BA)', v: 'Aprovechar fallos del juego. Cualquier bug debe reportarse al staff en el momento.' },
+          { k: '/me', v: 'Comando para mostrar a los demás una acción de tu personaje que no se puede animar.' },
+          { k: '/do', v: 'Comando narrativo o de entorno para reforzar el rol: apariencia, estado del personaje o lo que le rodea.' },
+          { k: 'Rol de entorno', v: 'Todo lo que nos rodea y debemos simular. La ciudad simula ser real: hay ciudadanos y cámaras que ven lo que hacemos. Al cometer un delito en una zona concurrida, debemos avisar nosotros mismos a la policía con /911 o /entorno; tanto el atracador como el atracado. En zonas como la base militar, el aeropuerto, la comisaría, el hospital y los barrios el rol de entorno es mayor y hay que reaccionar en consecuencia.' },
+          { k: 'Trabajos con WL', v: 'Todo trabajo con jefe se considera con whitelist (negocios, bandas, EMS, etc.). Está totalmente prohibido cambiarse temporalmente a un trabajo sin WL para farmear dinero.' },
+          { k: 'Cámaras de seguridad', v: 'Solo se pueden rolear las cámaras de un trabajo con whitelist. Están prohibidas las cámaras corporales, GoPros o similares. Las únicas cámaras móviles son las frontales de los coches patrulla, y se puede rolear su destrucción con un /me. Todas las grabaciones son mudas, salvo la lectura de derechos en una detención.' }
+        ] }
+      ] },
+      { title: 'Normas generales', blocks: [
+        { t: 'kv', items: [
+          { k: 'Valora tu vida', v: 'Prioriza siempre la supervivencia de tu personaje. Es la norma más importante y no cumplirla conlleva sanción.' },
+          { k: 'Evadir rol', v: 'Prohibido evitar un rol o dejarlo a medias huyendo o desconectándote. Si hace falta, se pueden pedir aclaraciones. También es evadir rol meterse en zonas seguras durante un rol agresivo o pulsar la «E» antes de que termine el tiempo de desangre.' },
+          { k: 'Volver al rol', v: 'No se puede retomar un rol después de un PK ni después de haberse alejado de la zona.' },
+          { k: 'Forzar rol', v: 'Buscar una y otra vez a una persona para iniciar un rol con ella. Si no te acepta, debes marcharte.' },
+          { k: 'Rol ajeno', v: 'Prohibido interferir en un rol en el que no estás implicado. Puedes intervenir si no interrumpes su desarrollo y hay rol previo.' },
+          { k: 'Detener un rol', v: 'No se para un rol para reportar ni por ningún otro motivo: primero se termina y después se actúa si es necesario. La administración puede cortarlo si lo ve necesario para que no empeore la situación.' },
+          { k: 'Uso de armas', v: 'Para usar la violencia o un arma siempre debe haber rol previo, salvo en sedes de bandas y zonas ilegales. Si amenazas a alguien, dale tiempo suficiente para reaccionar antes de disparar.' },
+          { k: 'Francotiradores', v: 'En cualquier rol agresivo solo una persona del grupo puede llevar un francotirador (normal, WWII, AWK, SKS, etc.), salvo en los atracos donde se permiten 2 tiradores.' },
+          { k: 'Armas largas', v: 'Son armas largas los francotiradores, fusiles y escopetas. Para llevar un arma larga o un arma cuerpo a cuerpo de dos manos hace falta mochila. Las armas largas y las automáticas cortas están limitadas a 1 por persona.' },
+          { k: 'Armas en vehículos', v: 'El conductor no puede disparar con el vehículo en movimiento; los pasajeros sí. En helicóptero solo disparan los pasajeros, y un francotirador solo se puede usar con el helicóptero totalmente estabilizado y quieto.' },
+          { k: 'Helicóptero policial', v: 'La policía puede disparar a matar desde el helicóptero si le han disparado y no está sobre el núcleo urbano.' },
+          { k: 'Roles desde vehículos', v: 'No se puede iniciar un rol agresivo desde dentro de un vehículo (salvo eventos autorizados): hay que bajarse. En persecuciones no se dispara a matar, solo a las ruedas; para disparar a matar hay que bajarse del vehículo.' },
+          { k: 'Estado de coma', v: 'Es el estado del personaje cuando muere. Simular inconsciencia se hace con /do, de forma temporal y nunca para evadir un rol.' },
+          { k: 'Llamadas a servicios', v: 'Prohibido hacer llamadas falsas a EMS, mecánicos o policía. Siempre hay que escribir el motivo de la llamada.' },
+          { k: 'Trabajos legales', v: 'Quien esté haciendo un trabajo legal no puede ser extorsionado ni robado. No se puede robar el armamento a los policías. Prohibido usar la ropa o los vehículos de trabajo para cosas ajenas al trabajo.' },
+          { k: 'Reportar infracciones', v: 'Termina siempre el rol antes de reportar, y solo reporta después de haber intentado aclarar la situación por OOC o Discord.' },
+          { k: 'Ropa de servicios', v: 'Prohibido usar uniformes de policía, mecánicos o EMS comprados en la tienda.' },
+          { k: 'Rotación de rol', v: 'Tras la muerte de un personaje hay que rotar el rol: cambiar perfil y aspecto físico (solo se puede mantener el sexo). Los jefes y subjefes de facción deben pedir permiso para rotar, y para pasar a un rol contrario deben hacerse un CK. Hay que esperar al menos 30 días para volver a un rol similar.' },
+          { k: 'DNI', v: 'Todos los ciudadanos deben llevar su identificación y no se puede rolear una falsa. Un policía al que se le pida el DNI puede dar su número de placa; si se registra a un policía muerto o se le amenaza, tendrá que mostrarlo.' },
+          { k: 'Máscaras', v: 'Llevar máscara no te hace irreconocible: se te puede investigar por matrícula, ropa y vehículos, pero nunca por la voz. Ver a alguien vestido igual no garantiza que sea la misma persona.' },
+          { k: 'Cuerpos calcinados', v: 'No se puede interactuar con un cuerpo calcinado.' },
+          { k: 'Software externo', v: 'Prohibido cualquier software externo que no sea para grabar: cheats, autoclicks, etc. Los moduladores de voz solo se permiten si encajan con tu IDP.' },
+          { k: 'Puntos calientes y armas', v: 'PROHIBIDO regalar puntos calientes o armamento. Solo las bandas pueden venderlos, nunca por debajo de 500.000 $.' },
+          { k: 'Faltas de respeto', v: 'Las faltas de respeto OOC se sancionan. Dentro del rol se puede usar lenguaje ofensivo si la situación lo pide, pero con control y sentido común.' },
+          { k: 'Eventos', v: 'Durante los eventos organizados por el staff no se puede delinquir en toda la ciudad.' },
+          { k: 'Uso de OOC', v: 'Todo lo que ocurre en el servidor es IC. El chat OOC solo se usa para preguntar si hay policía disponible o resolver dudas de comandos y teclas, salvo que un administrador indique lo contrario.' },
+          { k: '/calladmin y /report', v: 'Deben explicar el problema con detalle. No se atenderán los que no lo especifiquen.' },
+          { k: 'Bindeos', v: 'Prohibido usar bindeos para poner bridas o cortar comunicaciones. La policía usa las esposas y las bandas, igual. Para cortar las comunicaciones hay que quitar el móvil y la radio; al no existir otros dispositivos, con eso quedan cortadas TODAS.' },
+          { k: 'Menús', v: 'Un jugador que está en un menú de interacción (garaje, tienda, etc.) no puede entrar en un rol agresivo.' }
+        ] }
+      ] },
+      { title: 'Tráfico y vehículos', blocks: [
+        { t: 'h', text: 'Vehículos' },
+        { t: 'ul', items: [
+          'Los accidentes se rolean como en la vida real.',
+          'No se puede conducir con dos o más ruedas pinchadas. Con una sola rueda pinchada no se pueden superar los 100 km/h.',
+          'Si te pinchan una rueda de un disparo, puedes circular hasta que la rueda empiece a deslizar.'
+        ] },
+        { t: 'h', text: 'Aeronaves' },
+        { t: 'ul', items: [
+          'Todos los pilotos necesitan la licencia del tipo de aeronave que pilotan.',
+          'Está prohibido robar aeronaves.',
+          'Una aeronave puede volar como máximo 30 minutos antes de repostar.',
+          'Hay que volar a un mínimo de 200 m de altitud y está prohibido sobrevolar el núcleo urbano, salvo exhibiciones, cuerpos de seguridad y EMS.',
+          'Solo se puede aterrizar en pistas, helipuertos o llanos de montaña, salvo exhibiciones, cuerpos de seguridad y EMS.'
+        ] },
+        { t: 'h', text: 'Embarcaciones' },
+        { t: 'ul', items: [
+          'Para pilotar una embarcación hace falta el título teórico y práctico de patrón.',
+          'La tasa de alcohol permitida para un patrón es de 0,0 g/l.',
+          'Las embarcaciones se pueden amarrar en cualquier puerto autorizado de la ciudad.',
+          'La velocidad máxima en zonas costeras es de 20 nudos (37 km/h).',
+          'Toda embarcación matriculada en la ciudad debe pasar al menos una inspección al año.',
+          'Nunca se puede echar el ancla a menos de 200 m de una playa.',
+          'Están prohibidas las acrobacias cerca de la costa, salvo en exhibiciones.'
+        ] }
+      ] },
+      { title: 'Tipos de CK', blocks: [
+        { t: 'kv', items: [
+          { k: 'Cadena perpetua', v: 'Se aplica si el detenido llega a comisaría con más de 200.000 $ en multas. Tendrá hasta 30 minutos para pagar la mitad de las multas que elija, reduciendo la deuda al 50 % y por debajo de 200.000 $.' },
+          { k: 'Organización ilegal → Policía', v: 'Se puede hacer CK a un miembro de la policía o de su escala directiva si hay una investigación y un rol detrás que demuestren que la supervivencia de la banda está en riesgo. Debe aprobarlo antes la administración.' },
+          { k: 'Organización ilegal → Civil', v: 'Una banda puede hacer CK a un civil si hay rol detrás y este ha comprometido de alguna forma la estabilidad de la organización.' },
+          { k: 'Pruebas necesarias', v: 'En ambos casos, la organización debe presentar por ticket de Discord una foto del aspecto y la cara, el documento de identidad, si pertenece a alguna organización y un motivo de peso redactado y contextualizado. Todo debe estar justificado con imágenes. Para hacer CK al jefe de otra banda hay que hacerlo mediante una guerra.' },
+          { k: 'Intrusos y secuestrados', v: 'Si alguien entra en la sede de una organización criminal y le pillan in fraganti, se le puede hacer CK. Si un secuestrado no valora su vida, se le puede hacer un CK in situ no planeado, abriendo ticket antes de que ocurra.' },
+          { k: 'CK voluntario', v: 'Se puede pedir como máximo una vez al mes, mediante ticket en Discord.' },
+          { k: 'CK administrativo', v: 'Lo decide la administración cuando alguien acumula demasiadas infracciones o se salta una norma grave.' },
+          { k: 'CK judicial', v: 'A quien acumule cargos equivalentes a 35 años de prisión se le aplica un CK directo.' }
+        ] }
+      ] },
+      { title: 'Zonas calientes', blocks: [
+        { t: 'p', text: 'Son zonas donde se realizan actividades ilegales, como la venta de armas o el blanqueo de dinero.' },
+        { t: 'ul', items: [
+          'No se pueden campear, salvo las organizaciones autorizadas.',
+          'No se pueden enviar entornos ni avisos al EMS, porque el rol de entorno en estas zonas es bajo.',
+          'Se puede matar sin previo aviso.',
+          'No se pueden ocultar matrículas con /me o /do: para eso están los coches NPC y el eliminador de matrículas.',
+          'La policía puede hacer redadas aleatorias, siempre supervisadas por un alto rango.',
+          'Prohibido desconectarse en zonas calientes o territorios.'
+        ] }
+      ] },
+      { title: 'Robos y secuestros', blocks: [
+        { t: 'h', text: 'Antes de delinquir' },
+        { t: 'ul', items: [
+          'ANTES de cualquier atraco, secuestro o robo, comprueba que haya policía disponible preguntando por /OOC (como máximo una vez cada 30 minutos). La policía no puede rastrear ese mensaje.',
+          'Policía disponible es la que puede atender un rol; policía de servicio es la que está trabajando, esté disponible o no.',
+          'El número de policías necesario depende de la jurisdicción en la que estés (Norte o Sur). Los cuerpos de policía pueden colaborar en atracos medianos, grandes y traslados a la federal.',
+          'Tras un tiroteo, cada bando recoge como pueda a sus heridos (pueden pulsar la «E» si el rol ha terminado del todo y no tienen cómo ir al hospital). Puede unirse cuanta gente quiera de ambos grupos, siempre que pertenezca a ellos.',
+          'Los rehenes que colaboran no pueden ser agredidos. Si se rompen las negociaciones, pueden ser abatidos.',
+          'Prohibido llevar cascos de cualquier tipo en roles agresivos como secuestros o badulaques, para ambas partes.',
+          'Para matar a un civil tiene que haber 2 policías de servicio. Si el civil no valora su vida, se le puede hacer un PK como castigo inmediato, dejándole siempre margen para responder.'
+        ] },
+        { t: 'h', text: 'Sobre los robos' },
+        { t: 'ul', items: [
+          'Se puede robar todo: comida, bebida y armamento militar o policial (todo lo que salga de la armería de comisaría: armas, cargadores y accesorios). Al terminar el rol hay que tirarlo todo.',
+          'No se puede robar carne cruda, pescado ni cereales.',
+          'No se puede obligar a nadie a sacar dinero de un cajero o de su casa, ni a usar /miregalo.',
+          'No se puede campear ninguna zona: esperar a que alguien salga sin darle opción a huir. También es campear ir a sitios conocidos a robar (tienda multiusos, badulaques, etc.).',
+          'Prohibido parar un coche en marcha para robar a sus ocupantes: hay que darle el alto. A los jugadores solo se les puede robar de noche, o de día con rol previo. Si están cometiendo un delito o llevan máscara, se les puede robar a cualquier hora.'
+        ] },
+        { t: 'h', text: 'Sobre los secuestros' },
+        { t: 'p', text: 'Hay dos tipos de secuestro: con rescate a la policía y sin rescate.' },
+        { t: 'ul', items: [
+          'Con rescate: la policía participa en el rol y hay negociación. Se puede usar como moneda de cambio para liberar a un detenido o a alguien a punto de entrar en prisión perpetua.',
+          'Sin rescate: lo hacen grupos u organizaciones ilegales para obtener información, ajustar cuentas, hacer un CK, etc. En el momento de raptar al objetivo puede haber como máximo 3 atacantes; una vez raptado, no hay límite de personas.',
+          'Un secuestro dura como máximo 45 minutos desde que se establece la posición. El traslado hasta el punto no cuenta.',
+          'No se puede usar a amigos como rehenes.',
+          'No se puede secuestrar a la misma persona hasta que pase 1 hora y media.',
+          'No se puede secuestrar en moto: se considera PG.'
+        ] },
+        { t: 'h', text: 'Sobre los rescates' },
+        { t: 'ul', items: [
+          'Hacen falta al menos 3 agentes disponibles y como máximo 5.',
+          'Como máximo participan 5 delincuentes.',
+          'Puede haber como máximo 3 rehenes por rescate.',
+          'Rescate máximo en dinero negro: civil 100.000 $; policía 300.000 $ (alto rango) o 200.000 $ (rango normal o bajo).'
+        ] },
+        { t: 'h', text: 'Robo a un civil' },
+        { t: 'kv', items: [
+          { k: 'Atracadores', v: '1 por cada policía de servicio.' },
+          { k: 'Policías', v: 'Mínimo 1 de servicio.' },
+          { k: 'Repetición', v: 'No se puede atracar a la misma persona hasta que pasen 30 minutos.' }
+        ] },
+        { t: 'h', text: 'Secuestro a un civil' },
+        { t: 'kv', items: [ { k: 'Atracadores', v: 'Máximo 3.' }, { k: 'Policías', v: 'Mínimo 3 de servicio.' }, { k: 'Tiradores', v: 'Ilimitados.' } ] },
+        { t: 'h', text: 'Secuestro a un policía' },
+        { t: 'kv', items: [ { k: 'Rescate máximo', v: '100.000 $, o 150.000 $ si es un alto cargo.' }, { k: 'Atracadores', v: 'Máximo 5.' }, { k: 'Policías', v: 'Mínimo 3 de servicio (sin contar al secuestrado).' }, { k: 'Tiradores', v: 'Ilimitados.' } ] }
+      ] },
+      { title: 'Atracos', blocks: [
+        { t: 'ul', items: [
+          'Un atraco dura como máximo 60 minutos. Si se supera, se cancela el rol: el botín se deja en el sitio y policía y atracadores olvidan lo ocurrido.',
+          'La policía puede romper las negociaciones si los atracadores no tienen rehenes desde el principio.',
+          'Solo en caso de tiroteo hay 10 segundos de tregua (contados en voz alta) para prepararse. Si la otra parte no valora su vida o la de los rehenes, se puede abrir fuego sin previo aviso (se sancionará forzar que la otra parte rompa las negociaciones).',
+          'El tirador de la policía puede abatir al tirador de los atracadores sin romper las negociaciones, y viceversa.',
+          'Los atracadores deben avisar SIEMPRE a la policía antes de robar o secuestrar, con /911 y una descripción de lo que se vería (si llegan en coche o andando, ropa, color del vehículo…).',
+          'Los atracadores pueden pedir como máximo 3 minutos de ventaja para la huida.',
+          'En atracos a locales puede ayudar un colaborador extra si la huida se ha pactado con la policía. Solo puede haber 1, que entorpezca el paso de la policía (valorando su vida) y que puede entrar en el tiroteo si la policía dispara primero. No cuenta como atracador.',
+          'Un tirador que sube a un edificio ya no puede bajar, aunque sí puede pasar a los edificios de al lado.',
+          'Siempre tiene que haber un policía más que atracadores.'
+        ] },
+        { t: 'h', text: 'Robo pequeño: coches, badulaque, lavandería, casa de cambio' },
+        { t: 'kv', items: [
+          { k: 'Atracadores', v: 'Máximo 5.' }, { k: 'Policías', v: 'Mínimo 2, máximo 4.' }, { k: 'Tiradores', v: '1 (cuenta como atracador y como policía de servicio).' },
+          { k: 'Armas', v: 'Pistolas y armas cuerpo a cuerpo. Ambas partes llevan el mismo armamento, salvo que si los atracadores usan armas cuerpo a cuerpo la policía puede usar pistola.' },
+          { k: 'Huida', v: 'Si al conseguir el botín no ha llegado la policía, los atracadores pueden huir sin esperar.' }
+        ] },
+        { t: 'h', text: 'Robo mediano: casas, contenedores, Fleeca Bank, Maze Bank' },
+        { t: 'kv', items: [
+          { k: 'Atracadores', v: 'Máximo 12.' }, { k: 'Policías', v: 'Mínimo 4, máximo 14.' }, { k: 'Tiradores', v: '1 (cuenta como atracador y como policía de servicio).' },
+          { k: 'Armas', v: 'Todo tipo de armas para ambos bandos, excepto francotiradores.' }
+        ] },
+        { t: 'h', text: 'Robo mayor: Banco Central, casino, Pacific Bank, avión' },
+        { t: 'kv', items: [
+          { k: 'Quién', v: 'Evento autorizado solo para mafias y bandas.' },
+          { k: 'Atracadores', v: 'Máximo 12.' }, { k: 'Policías', v: 'Mínimo 6, máximo 16.' }, { k: 'Tiradores', v: '2 (cuentan como atracadores y como policías de servicio).' },
+          { k: 'Armas', v: 'Todo tipo de armas para ambos bandos, explosivos incluidos.' }
+        ] },
+        { t: 'h', text: 'Resumen de atracos' },
+        { t: 'kv', items: [
+          { k: 'Pequeño', v: 'Policías 2–4 · Atracadores 1–3 · Rehenes máx. 2 · Tiradores 1' },
+          { k: 'Mediano', v: 'Policías 4–14 · Atracadores 1–5 · Rehenes máx. 3 · Tiradores 1' },
+          { k: 'Mayor', v: 'Policías 6–16 · Atracadores 4–8 · Rehenes máx. 5 · Tiradores 2' }
+        ] }
+      ] },
+      { title: 'Niveles de alerta (EAS)', blocks: [
+        { t: 'p', text: 'El Emergency Alert System (EAS) mide el nivel de preparación y defensa de la policía. Se ajusta según el nivel de criminalidad de la ciudad.' },
+        { t: 'h', text: 'Nivel 1 · Situación normal' },
+        { t: 'ul', items: [
+          'Actividad criminal muy baja. Se patrulla de forma habitual, sin armamento especial.',
+          'Chaleco antibalas obligatorio en todo momento (no visible). Solo se pueden equipar las armas reglamentarias del grupo A.',
+          'Cada binomio puede llevar un arma automática del grupo B en el maletero para responder a fuego automático, pero nunca encima.'
+        ] },
+        { t: 'h', text: 'Nivel 2 · Aumento de la delincuencia' },
+        { t: 'ul', items: [
+          'Aumentan los delitos en varios distritos. Se refuerzan los efectivos y el armamento policial.',
+          'Se activa cuando hay varios focos de actividad criminal y uso de armamento automático, como múltiples secuestros o tiroteos en distintos puntos.',
+          'Todos los agentes pueden llevar armas del grupo A, un arma del grupo B encima (una por patrulla) y ropa de operaciones especiales. Se permite 1 vehículo especial.'
+        ] },
+        { t: 'h', text: 'Nivel 3 · Amenaza grave' },
+        { t: 'ul', items: [
+          'Amenaza de gran magnitud: la ciudadanía debe quedarse en casa o en zonas seguras y se cierran los negocios.',
+          'Quien incumpla el toque de queda será registrado, identificado y llevado a comisaría hasta que pase la alerta. Si lleva algo ilegal o tiene cuentas con la ley, será detenido.',
+          'Se puede pedir apoyo militar (administración) para patrullar y resolver la alerta.',
+          'Se activa, por ejemplo, por el secuestro de un alto cargo del Estado, atentados contra edificios públicos o federales o un descontrol total de la ciudadanía.',
+          'Todos los agentes pueden llevar armas del grupo C y ropa de operaciones especiales. Se autorizan vehículos especiales y helicópteros.',
+          'Prohibida la venta de drogas. Duración máxima: 30 minutos.'
+        ] },
+        { t: 'h', text: 'Nivel 4 · Evento oficial' },
+        { t: 'note', text: 'La policía no está disponible por un evento oficial del staff. Están prohibidos los actos ilegales de cualquier tipo en toda la ciudad.' }
+      ] },
+      { title: 'Trabajos, multi PJ y peds', blocks: [
+        { t: 'h', text: 'Trabajos' },
+        { t: 'ul', items: [
+          'Trabajos sin WL: no se puede iniciar un rol agresivo con alguien que está trabajando. Solo se le puede secuestrar durante los trayectos y sin campeo previo, y solo si trabaja con el vehículo de empresa.',
+          'Bajo ningún concepto se pueden robar objetos de recompensa de trabajos, los tenga quien los tenga, salvo en zonas calientes.'
+        ] },
+        { t: 'h', text: 'Multi PJ' },
+        { t: 'ul', items: [
+          'Prohibido tener varios personajes con roles en común (hermanos, hijos, jefe y empleado, etc.).',
+          'No se pueden tener personajes en facciones opuestas, como una banda y la policía, los bomberos o los servicios médicos.'
+        ] },
+        { t: 'h', text: 'Uso de peds' },
+        { t: 'ul', items: [
+          'Tu historia debe corresponder al ped que elijas. Si ya tenías uno, para cambiar de identidad tendrás que rotar el rol (CK).',
+          'No se permite usar varios peds, salvo para probarlos al elegir tu personaje por primera vez (siempre en una casa o un lugar apartado).'
+        ] },
+        { t: 'note', text: 'El mal uso de peds conlleva un baneo mínimo de 2 semanas y la prohibición de usarlos en el futuro.' }
+      ] }
+    ];
+
+    var BANDAS = [
+      { title: 'Bandas', blocks: [
+        { t: 'p', text: 'Una banda es un grupo organizado de 3 a 10 personas que no es una organización oficial, pero que se dedica de forma activa a cometer delitos por la ciudad.' },
+        { t: 'h', text: 'Solicitud' },
+        { t: 'p', text: 'Para solicitar una banda, el líder de la organización que la va a tutelar debe abrir un ticket en Discord presentando a sus miembros. Cualquier cambio en la banda se notificará a la administración.' },
+        { t: 'h', text: 'Requisitos' },
+        { t: 'ul', items: [
+          'Entre 3 y 10 miembros.',
+          'Al menos una semana en el servidor.',
+          'Edad media de los integrantes de 16 años como mínimo.',
+          'Todos los miembros identificados ante el staff (nombre IC, Discord y Steam).'
+        ] },
+        { t: 'h', text: 'Normativa' },
+        { t: 'kv', items: [
+          { k: '1', v: 'Las bandas deben respetar la normativa general.' },
+          { k: '2', v: 'Las bandas no pueden colaborar con las organizaciones como miembros extra.' },
+          { k: '3', v: 'Las bandas deben estar bajo la tutela de una organización oficial.' }
+        ] },
+        { t: 'h', text: 'Armas' },
+        { t: 'kv', items: [
+          { k: '4', v: 'Solo pueden hacer tratos con su organización asignada.' },
+          { k: '5', v: 'Pueden llevar cualquier arma si tienen permiso de su organización.' }
+        ] }
+      ] },
+      { title: 'Organizaciones ilegales', blocks: [
+        { t: 'h', text: 'Requisitos' },
+        { t: 'ul', items: [
+          'Al menos 1 semana de antigüedad en el servidor para solicitar una organización.',
+          'El líder debe ser mayor de edad (18 años) y la edad media del grupo, de al menos 16 años.',
+          'Entre 4 y 10 miembros.'
+        ] },
+        { t: 'h', text: 'Solicitud' },
+        { t: 'p', text: 'La solicitud se hace por Discord e incluye:' },
+        { t: 'ul', items: [
+          'Nombre de la organización.',
+          'Historia de la organización.',
+          'Nombre de los miembros.',
+          'Historia de cada miembro.',
+          'Actividades principales que se quieren realizar.',
+          'Opcional: mapeado (mejor si se proponen varios).'
+        ] },
+        { t: 'note', text: 'Las solicitudes se valoran por orden de llegada (primero las más antiguas) y según la calidad de rol de los participantes.' }
+      ] },
+      { title: 'Normas de actuación', blocks: [
+        { t: 'kv', items: [
+          { k: '1. Menú F6', v: 'Totalmente prohibido usar el menú F6 para sacar el DNI o registrar a alguien sin rol previo. Por ejemplo, no se puede llegar corriendo y usar el F6 sin rolear.' },
+          { k: '2. Siguen siendo civiles', v: 'Los miembros de una organización no dejan de ser civiles: deben comportarse como tales y respetar el rol de entorno en todo momento.' },
+          { k: '3. Sedes', v: 'Terminantemente prohibido entrar en la sede de una organización enemiga. Quien lo haga será sancionado, y si la organización le encuentra dentro puede hacerle un CK instantáneo y abrir fuego sin aviso ni rol previo.' },
+          { k: '4. Armas largas y automáticas', v: 'Las organizaciones consiguen armas largas con más facilidad, pero solo pueden usarlas en roles que lo requieran (robos, atracos, asaltos, reuniones, etc.) y nunca llevarlas encima sin motivo. Dentro de la ciudad solo se puede llevar pistola. Además, hay que cumplir la normativa general.' },
+          { k: '5. Robos a civiles', v: 'Nunca se puede matar a un jugador para después robarle con el F6 (salvo en zonas calientes). Siempre hay que rolear el atraco: solo si el atracado no valora su vida se le puede matar y robar después. Si colabora en todo momento, no se le puede matar.' },
+          { k: '6. Roles con la policía', v: 'Se puede robar material policial en un tiroteo, pero al terminar el rol hay que tirarlo (armas y munición). No se puede iniciar un tiroteo con la policía sin rol previo.' },
+          { k: '7. Alianzas', v: 'No se pueden formar alianzas (respetando siempre el fair play), pero sí pactos de no agresión y pactos comerciales, con mejores precios pero sin regalar nunca armamento ni droga. Se puede pagar a otra organización para que haga trabajos en su nombre, pero nunca a la vez (en eventos, según se indique).' },
+          { k: '8. Secuestros', v: 'Hace falta un motivo de peso. Se usan para sacar información y hacer CK, y no tienen por qué acabar en un rol con la policía para pedir rescate. Hay que seguir la normativa general.' },
+          { k: '9. Guerras', v: 'Para empezar una guerra hay que pedir autorización por ticket con razones y pruebas de peso; el staff decide si se acepta. Aceptada, se abren 2 tickets con los miembros de cada organización. La guerra dura 1 día y el objetivo es secuestrar al jefe y al subjefe contrarios y hacerles un CK. No puede ser instantáneo: hay que rolearlo y llevarlos a un lugar apartado, dando así opción a que les rescaten.' },
+          { k: '10. Tortura', v: 'Una organización puede torturar a alguien para sacarle información. Se permite cualquier tortura que no implique amputaciones mayores y que sea siempre reparable. Si secuestras a alguien para torturarle, no puedes pedir rescate a la policía.' }
+        ] }
+      ] },
+      { title: 'Territorios y barrios', blocks: [
+        { t: 'h', text: 'Territorios en disputa' },
+        { t: 'ul', items: [
+          'En la batalla por territorios se puede robar cualquier cosa a los muertos, excepto material policial y comida.',
+          'Las organizaciones no pueden reconocer, fotografiar ni pedir el DNI.',
+          'La policía NO participa.',
+          'El rango de disparo llega hasta donde alcancen las armas.',
+          'Se permiten todas las armas excepto las de largo alcance (francotiradores).',
+          'Conquistado el territorio, el ganador puede mantener la posición y saquear solo a los muertos. Los perdedores deben abandonar la zona y ambos bandos dejan de disparar.',
+          'Incumplir o abusar de la normativa de territorios (incluido aprovechar vacíos legales sin consultarlo antes) es una falta extraordinaria de banda.'
+        ] },
+        { t: 'h', text: 'Barrios' },
+        { t: 'p', text: 'Los barrios se ganan de forma IC, comprándolos en la tienda correspondiente. No son zonas calientes. Dan estas ventajas:' },
+        { t: 'ul', items: [
+          'Solo se puede robar a civiles dentro de tu propio barrio. Se puede patrullar el barrio para robar, pero nunca campear puntos concretos.',
+          'Se puede extorsionar a los negocios a cambio de «protección»: no robar a sus clientes para que puedan ir tranquilos.',
+          'Si alguien vende droga en el territorio, la banda se lleva una comisión del 10 %.',
+          'Avisos de venta de droga dentro del territorio.'
+        ] },
+        { t: 'h', text: 'Grafitis' },
+        { t: 'ul', items: [
+          'No se pueden hacer en sedes ni en casas.',
+          'No pueden servir de excusa para el PvP. Si no quieres que te los borren, escóndelos por la ciudad.',
+          'No pueden usarse para crear malestar entre bandas, contra otros jugadores o contra el staff.',
+          'Solo sirven para ganar reputación, no para mandar mensajes.'
+        ] },
+        { t: 'h', text: 'Reputación' },
+        { t: 'ul', items: [
+          'Ganar territorios en PvP da respeto.',
+          'Hacer grafitis con el nombre de la banda y borrar los de otras bandas da respeto.',
+          'Hacer misiones de entrega da respeto.'
+        ] },
+        { t: 'note', text: 'Para controlar la actividad, cada mes se paga un tributo desde el menú de banda con la opción «Quemar dinero».' }
+      ] },
+      { title: 'Conflictos', blocks: [
+        { t: 'p', text: 'Un conflicto es un rol en el que dos organizaciones se atacan sin llegar a hacer CK ni a desmantelar ninguna banda.' },
+        { t: 'ul', items: [
+          'Tiene que aceptarse por ticket.',
+          'Tiene una duración limitada.',
+          'Los roles del conflicto se deciden antes de que ocurra.',
+          'La organización que pierda entregará a la ganadora beneficios de su sede, según lo acordado antes de empezar.'
+        ] }
+      ] },
+      { title: 'Sanciones', blocks: [
+        { t: 'h', text: 'Valor de las faltas' },
+        { t: 'kv', items: [
+          { k: 'Leve', v: '0,25 puntos' }, { k: 'Media', v: '0,5 puntos' }, { k: 'Grave', v: '1 punto' }, { k: 'Extraordinaria', v: '2 puntos' }
+        ] },
+        { t: 'note', text: 'Con 3 puntos, la banda u organización queda expulsada.' },
+        { t: 'h', text: 'Faltas leves' },
+        { t: 'ul', items: ['Forzar rol.', 'No usar /entorno al cometer delitos.', 'Ir enmascarado sin estar cometiendo un delito.', 'Robar a civiles siendo más personas de las permitidas.', 'Llevar un arma larga sin mochila.', 'Llevar más de un arma larga encima.', 'Ignorar los comunicados del staff.'] },
+        { t: 'h', text: 'Faltas medias' },
+        { t: 'ul', items: ['No respetar el rol de entorno.', 'Secuestrar con más secuestradores de los permitidos.', 'Mal uso de un arma larga al robar a un civil (por ejemplo, atracar con ella a cualquiera por la calle).', 'Llevar un arma larga encima continuamente.', 'Iniciar un tiroteo con la policía sin rol previo.', 'Excederse en las torturas.'] },
+        { t: 'h', text: 'Faltas graves' },
+        { t: 'ul', items: ['No respetar el rol de entorno de las sedes.', 'Formar alianzas con otras organizaciones.'] },
+        { t: 'h', text: 'Faltas extraordinarias' },
+        { t: 'ul', items: ['Abusar del F6.', 'Robar armamento policial.'] }
+      ] }
+    ];
+
+    var NEGOCIOS = [
+      { title: 'Gestión y responsable', blocks: [
+        { t: 'kv', items: [
+          { k: 'Art. 1', v: 'Inactividad: si el jefe pasa 15 días sin conectarse y sin avisar, el negocio pasará a reserva. Se avisará al dueño, que podrá volver a solicitarlo pasados 7 días.' },
+          { k: 'Art. 2', v: 'Cada negocio tendrá un responsable designado, encargado de comunicarse con el staff desde la solicitud y de contratar a los empleados. Puede gestionar el negocio como quiera y delegar tareas de gestión IC en los empleados, pero nunca su responsabilidad OOC con el staff. También se ocupa del balance de la actividad y de los beneficios o pérdidas. Deberá mantener actualizado en el foro un hilo público de entorno, aprobado antes por el staff, con cualquier detalle que influya en cómo otros interactúan con su propiedad (vigilancia, protecciones extra, etc.).' },
+          { k: 'Art. 3', v: 'El responsable se compromete a ser un motor de rol y un ejemplo para la comunidad, sin saltarse la normativa. Según la gravedad de la falta, se le podrá retirar el negocio o cesar como responsable.' },
+          { k: 'Art. 4', v: 'Con una ausencia justificada, el responsable puede delegar la gestión en otro empleado durante un máximo de un mes. Si se supera, se considerará un traspaso y se valorará si conviene o no.' }
+        ] }
+      ] },
+      { title: 'Empleados y actividad', blocks: [
+        { t: 'kv', items: [
+          { k: 'Art. 5', v: 'Solo los civiles pueden ser empleados de un negocio. Criminales, médicos y agentes de la ley no pueden serlo.' },
+          { k: 'Art. 6', v: 'Las bandas pueden adquirir negocios como tapadera, cumpliendo lo anterior y contratando a civiles a su cargo.' },
+          { k: 'Art. 7', v: 'Los negocios deben ser un foco activo de rol para toda la comunidad: interactuar con los demás jugadores y hacer las actividades propias de su negocio. No se exige un mínimo de eventos, porque no todos los negocios pueden organizarlos, pero su actividad debe ser visible y constante.' },
+          { k: 'Art. 8', v: 'La administración puede revocar un negocio ya aceptado si no se le da un uso correcto o si el rol que ofrece al servidor no tiene una calidad mínima.' },
+          { k: 'Art. 9', v: 'Los integrantes de un negocio no pueden actuar como si fueran una banda.' },
+          { k: 'Art. 10', v: 'La administración puede añadir o retirar negocios según circunstancias especiales o necesidades del servidor.' }
+        ] }
+      ] }
+    ];
+    var BOOKS = {
+      general: { title: 'Normativa general', org: 'Willow Community', chapters: GENERAL },
+      lspd: { title: 'Normativa LSPD', org: 'Los Santos Police Department', chapters: LSPD },
+      bandas: { title: 'Bandas y organizaciones', org: 'Willow Community', chapters: BANDAS },
+      negocios: { title: 'Normativa de negocios', org: 'Willow Community', chapters: NEGOCIOS }
+    };
+    var tabDefs = [
+      { id: 'general', label: 'General' },
+      { id: 'lspd', label: 'Policía (LSPD)' },
+      { id: 'bandas', label: 'Bandas y organizaciones' },
+      { id: 'negocios', label: 'Negocios' },
+      { id: 'ems', label: 'Servicios médicos' },
+      { id: 'meca', label: 'Mecánicos' }
+    ];
+    var tab = this.state.normTab;
+    var normTabs = tabDefs.map(function (d) {
+      var on = d.id === tab;
+      return { label: d.label, pressed: on ? 'true' : 'false', bg: on ? accent : 'transparent', fg: on ? '#0A0A0A' : '#EDEDED', border: on ? accent : '#3A3A3A',
+        pick: function () { if (!on) self.setState({ normTab: d.id, chap: 0 }); } };
+    });
+    var soonNames = { ems: 'de servicios médicos', meca: 'de mecánicos' };
+    var BOOK = BOOKS[tab] || BOOKS.general;
+    var CH = BOOK.chapters;
+    var ci = Math.max(0, Math.min(this.state.chap, CH.length - 1));
+    var pad = function (n) { return n < 10 ? '0' + n : '' + n; };
+    var chapters = CH.map(function (c, i) {
+      var on = i === ci;
+      return { num: pad(i + 1), title: c.title, current: on ? 'page' : 'false', bg: on ? '#111111' : 'transparent', fg: on ? '#FFFFFF' : '#1A1A1A',
+        pick: function () { if (!on) self.setState({ chap: i }); } };
+    });
+    var cur = CH[ci];
+    var chap = { num: pad(ci + 1), title: cur.title, blocks: cur.blocks.map(function (b) {
+      return {
+        isH: b.t === 'h', isP: b.t === 'p', isNote: b.t === 'note', isUl: b.t === 'ul', isOl: b.t === 'ol', isChips: b.t === 'chips', isRanks: b.t === 'ranks', isKv: b.t === 'kv',
+        text: b.text || '',
+        list: (b.items || []).map(function (it, j) { return typeof it === 'string' ? { t: it, n: pad(j + 1) } : it; })
+      };
+    }) };
+    // ---- DONACIONES: edita aquí los artículos. available: true = Disponible, false = No disponible
+    var DON = {
+      talleres: { name: 'Talleres', items: [
+        { name: 'Rising Sun Customs', desc: 'Taller de estética japonesa con fachada propia, gran portón de garaje y su icónico cartel en lo alto. Perfecto para montar tu equipo de mecánicos.', img: 'assets/img/rising-sun.webp', available: true },
+        { name: 'Auto Exotic', desc: 'Taller junto a la autopista con zona de trabajo cubierta, amplia explanada y su cartel visible desde la carretera. Ideal para un taller con mucho movimiento.', img: 'assets/img/auto-exotic.webp', available: true },
+        { name: 'Mosley Auto Service', desc: 'Taller clásico en plena ciudad, con varias zonas de reparación, explanada vallada y su mítico cartel de silenciadores, puesta a punto y neumáticos.', img: 'assets/img/mosley.webp', available: true },
+        { name: "Benny's", desc: 'Taller moderno con fachada acristalada, zona de exposición, oficinas y un gran aparcamiento. Su cartel en la azotea se ve desde lejos.', img: 'assets/img/bennys.webp', available: true }
+      ] },
+      restaurantes: { name: 'Restaurantes', items: [
+        { name: 'Burger Shot', desc: 'Hamburguesería con aparcamiento propio, terraza y su gigantesco cartel de la hamburguesa visible desde toda la zona.', imgs: ['assets/img/r-burgershot.webp'], available: true },
+        { name: 'Bean Machine', desc: 'Cafetería de dos plantas con grandes cristaleras, terraza con sombrillas en la planta alta y otra a pie de calle.', imgs: ['assets/img/r-beanmachine.webp'], available: true },
+        { name: 'UwU Café', desc: 'Cafetería temática de platos y postres, con su cartel morado en la fachada y un jardín con bancos para sentarse fuera.', imgs: ['assets/img/r-uwu.webp'], available: true },
+        { name: 'Pearls', desc: 'Marisquería sobre el muelle, con vistas al mar, terraza con sombrillas y una segunda planta abierta al océano.', imgs: ['assets/img/r-pearls.webp'], available: true },
+        { name: 'Döner Kebab', desc: 'Local de kebab en una esquina de la ciudad, con barra, taburetes y una fachada oscura con sus carteles iluminados.', imgs: ['assets/img/r-kebab.webp'], available: true },
+        { name: 'Snr. Buns', desc: 'Hamburguesería de dos plantas en plena ciudad, con su gran cartel iluminado y la cafetería Snr. Muffin al lado.', imgs: ['assets/img/r-snrbuns.webp'], available: true },
+        { name: 'Up-n-Atom', desc: 'La hamburguesería clásica de Vinewood, con autoservicio para coches, zona verde y su cartel retro en la esquina.', imgs: ['assets/img/r-upnatom.webp'], available: true },
+        { name: 'Koi', desc: 'Restaurante asiático de lujo con tejado de tejas verdes, recepción con acuario y un gran comedor rodeado de farolillos rojos.', imgs: ['assets/img/r-koi3.webp', 'assets/img/r-koi1.webp', 'assets/img/r-koi2.webp'], available: true },
+        { name: 'Bean Machine GC', desc: 'Cafetería Bean Machine en una esquina del centro, con fachada clásica de columnas y grandes escaparates.', imgs: ['assets/img/r-beangc.webp'], available: true }
+      ] },
+      helicopteros: { name: 'Helicópteros', items: [] },
+      coches: { name: 'Coches', items: [] },
+      barcos: { name: 'Barcos', items: [] },
+      motos: { name: 'Motos', items: [] },
+      mansiones: { name: 'Mansiones', items: [
+        { name: 'Mansión 1', desc: 'Mansión moderna en la colina con entrada privada de piedra, camino de cipreses, piscina, terraza con zona chill-out, placas solares y vistas a la ciudad.', imgs: ['assets/img/mansion1-2.webp', 'assets/img/mansion1-1.webp'], available: true },
+        { name: 'Mansión 2', desc: 'Gran mansión blanca junto al mar, con patio de entrada y fuente, piscina con jacuzzi, helipuerto propio y una enorme terraza sobre el acantilado.', imgs: ['assets/img/mansion2-1.webp', 'assets/img/mansion2-2.webp'], available: true },
+        { name: 'Mansión 3 · Tropical Villa', desc: 'Villa de diseño en curva colgada de la montaña, con piscina infinita, varias terrazas de madera y un acceso privado entre palmeras bajo el cartel de Tropical Villa.', imgs: ['assets/img/mansion3-1.webp', 'assets/img/mansion3-2.webp'], available: true },
+        { name: 'Mansión 4', desc: 'Ático de lujo en lo alto de Vinewood con piscina, jacuzzi, jardín, pista en la azotea, helipuerto y vistas a toda la ciudad.', imgs: ['assets/img/mansion4-1.webp'], available: true },
+        { name: 'Mansión 5', desc: 'Hacienda en la cima de la colina con camino privado amurallado, jardín de palmeras, piscina, helipuerto y vistas al océano.', imgs: ['assets/img/mansion5-1.webp'], available: true },
+        { name: 'Mansión 6', desc: 'Mansión de estilo desértico rodeada de palmeras y cactus, con portón de piedra, camino privado y terraza con vistas a la montaña.', imgs: ['assets/img/mansion6-1.webp', 'assets/img/mansion6-2.webp'], available: true },
+        { name: 'Mansión 7', desc: 'Casa moderna de madera y piedra entre pinos, con garaje, portón de entrada, piscina sobre un gran muro de contención, jacuzzi y terraza con vistas al valle.', imgs: ['assets/img/mansion7-1.webp', 'assets/img/mansion7-2.webp'], available: true },
+        { name: 'Mansión 8', desc: 'Enorme finca de estilo señorial con torre, gran aparcamiento privado, garaje independiente, helipuerto y vistas al aeropuerto y a la costa.', imgs: ['assets/img/mansion8-1.webp', 'assets/img/mansion8-2.webp'], available: true },
+        { name: 'Mansión 9', desc: 'Casa minimalista suspendida sobre la roca, rodeada de vegetación, con grandes ventanales, terraza corrida y patio privado.', imgs: ['assets/img/mansion9-2.webp', 'assets/img/mansion9-1.webp'], available: true },
+        { name: 'Mansión 10', desc: 'Mansión de tres plantas en lo alto de la colina, amurallada en piedra, con gran piscina, tarima con tumbonas, pérgola, jacuzzi, terrazas acristaladas y vistas a la montaña.', imgs: ['assets/img/mansion10-1.webp'], available: true }
+      ] },
+      discotecas: { name: 'Discotecas', items: [
+        { name: 'Bahamas', desc: 'La mítica discoteca Bahama Mamas West, con su fachada de neones rosas y su famoso cartel del cóctel. Ideal para montar las mejores fiestas de la ciudad.', img: 'assets/img/bahamas.webp', available: true },
+        { name: 'Vanilla Unicorn', desc: 'El club nocturno más conocido de la ciudad, junto a la autopista, con sus carteles luminosos en la azotea y su icónico unicornio rojo en la fachada.', img: 'assets/img/vanilla.webp', available: true },
+        { name: 'Club 77', desc: 'Discoteca urbana con neones morados, toldo en la entrada y una fachada llena de carteles y grafitis. Perfecta para noches de música y eventos.', img: 'assets/img/club77.webp', available: true },
+        { name: 'Pacific Bluffs', desc: 'Club de playa frente al océano, con terraza entre palmeras, zona de baño, muelle con plataformas sobre el agua y gran aparcamiento. Fiestas con los pies en la arena.', img: 'assets/img/pacific.webp', available: true },
+        { name: 'Paradise Beach Club', desc: 'Beach club junto al mar con varias piscinas, zonas chill-out con sombrillas, barras, terrazas de madera y un jardín de palmeras que llega hasta la arena.', img: 'assets/img/paradise.webp', available: true },
+        { name: 'Tequi-la-la', desc: 'El bar de rock más famoso de Vinewood, con su fachada amarilla, su toldo negro y ambiente de concierto. Ideal para noches de directo y fiestas.', img: 'assets/img/tequilala.webp', available: true },
+        { name: 'LUX', desc: 'Club de lujo con entrada bajo marquesina, recibidor con photocall y una gran sala con pista de baile, reservados, barra, escenario y techo lleno de luces.', imgs: ['assets/img/lux-club.webp', 'assets/img/lux-ext.webp', 'assets/img/lux-lobby.webp'], available: true }
+      ] }
+    };
+    var dc = DON[this.state.donCat] ? this.state.donCat : 'talleres';
+    var cats = {};
+    Object.keys(DON).forEach(function (id) {
+      var on = id === dc;
+      var n = DON[id].items.filter(function (x) { return x.available; }).length;
+      cats[id] = {
+        pressed: on ? 'true' : 'false', bg: on ? accent : '#151515', fg: on ? '#0A0A0A' : '#EDEDED', border: on ? accent : '#262626',
+        icBg: on ? '#0A0A0A' : '#1E1E1E', ic: on ? '#FFFFFF' : accent,
+        count: DON[id].items.length === 0 ? 'Próximamente' : (n === 1 ? '1 disponible' : n + ' disponibles'),
+        pick: function () { if (!on) self.setState({ donCat: id }); }
+      };
+    });
+    var donItems = DON[dc].items.map(function (x, i) {
+      var ok = !!x.available;
+      var key = dc + ':' + i;
+      var imgs = x.imgs || [x.img];
+      var cur = Math.min(self.state.donImg[key] || 0, imgs.length - 1);
+      var thumbs = imgs.map(function (src, j) {
+        return { label: 'Ver foto ' + (j + 1) + ' de ' + imgs.length, pressed: j === cur ? 'true' : 'false', dotBg: j === cur ? '#FFFFFF' : 'rgba(255,255,255,0.45)', dotW: j === cur ? '22px' : '8px',
+          pick: function () { var m = Object.assign({}, self.state.donImg); m[key] = j; self.setState({ donImg: m }); } };
+      });
+      return { name: x.name, desc: x.desc, img: imgs[cur], alt: x.name + (imgs.length > 1 ? ' (foto ' + (cur + 1) + ' de ' + imgs.length + ')' : ''), available: ok, sold: !ok,
+        hasThumbs: imgs.length > 1, thumbs: thumbs,
+        status: ok ? 'Disponible' : 'No disponible',
+        badgeBg: ok ? '#FFFFFF' : 'rgba(10,10,10,0.85)', badgeFg: ok ? '#0A0A0A' : '#C8C8C8', badgeBorder: ok ? '#FFFFFF' : '#3A3A3A', dot: ok ? '#0A0A0A' : '#6A6A6A',
+        filter: ok ? 'none' : 'grayscale(1)', imgOpacity: ok ? 1 : 0.45 };
+    });
+    return { accent: accent, rules: rules, faqs: faqs, copy: copy, copyLabel: this.state.copied ? '¡Copiado!' : 'Copiar',
+      cats: cats, donItems: donItems, donHasItems: donItems.length > 0, donEmpty: donItems.length === 0, donCatName: DON[dc].name, donCatLower: DON[dc].name.toLowerCase(),
+      normTabs: normTabs, isBook: !!BOOKS[tab], book: { title: BOOK.title, org: BOOK.org }, isSoon: !!soonNames[tab], soonName: soonNames[tab] || '',
+      chapters: chapters, chap: chap, chapTotal: pad(CH.length), isFirst: ci === 0, isLast: ci === CH.length - 1,
+      prevOpacity: ci === 0 ? 0.35 : 1, nextOpacity: ci === CH.length - 1 ? 0.35 : 1,
+      prevChap: function () { if (ci > 0) self.setState({ chap: ci - 1 }); },
+      nextChap: function () { if (ci < CH.length - 1) self.setState({ chap: ci + 1 }); } };
+  }
+}
+mountWillow(Component);
+</script>
+</body>
+</html>
